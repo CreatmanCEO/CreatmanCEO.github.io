@@ -424,6 +424,40 @@ function createSlide(project) {
     `;
 }
 
+// Слайдер проектов
+const projects = [
+    {
+        title: "Мобильное приложение Сахалин-Маркет",
+        description: "Кроссплатформенное мобильное приложение для заказа еды и товаров в г. Южно-Сахалинск.",
+        image: "/images/sakh-mob.webp"
+    },
+    {
+        title: "Web-приложение Сахалин-Маркет",
+        description: "Создание масштабируемой платформы для агрегатора доставки еды и товаров, включающее в себя веб-сайт и админ панели для сериса и заведений.",
+        image: "/images/sakh-web.webp"
+    },
+    {
+        title: "Web-Приложение СпортХаб",
+        description: "Полноценная платформа для создания любительских футбольных команд и проведения соревнований и тренировок.",
+        image: "/images/sporthub.webp"
+    }
+];
+
+let currentSlide = 0;
+const slider = document.getElementById('projectSlider');
+
+function createSlide(project) {
+    return `
+        <div class="slide">
+            <img src="${project.image}" alt="${project.title}">
+            <div class="slide-content">
+                <h3>${project.title}</h3>
+                <p>${project.description}</p>
+            </div>
+        </div>
+    `;
+}
+
 function showSlide(index) {
     // Удаляем активный класс у всех слайдов
     const slides = slider.querySelectorAll('.slide');
