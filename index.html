@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CREATMAN | Воплощаем ваши идеи в цифровой реальности</title>
-    <meta name="description" content="Разработка мобильных приложений на Flutter, создание веб-приложений и сайтов. Индивидуальный подход к каждому проекту.">
+    <meta name="description" content="Разработка мобильных приложений на Flutter и React, создание веб-приложений и сайтов. Индивидуальный подход к каждому проекту.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -100,22 +100,68 @@
             padding: 100px 0;
         }
         
-        .slider {
-            overflow: hidden;
-            position: relative;
-            margin-top: 2rem;
-        }
-        
-        .slide {
-			display: none;
-			padding: 2rem;
+        .case-studies {
+			padding: 100px 0;
+			background: var(--bg-light);
+		}
+
+		.slider {
+			position: relative;
+			margin-top: 2rem;
+			width: 100%;
+			aspect-ratio: 1879/1388; /* Устанавливаем пропорции как у ваших изображений */
 			background: white;
 			border-radius: 20px;
+			overflow: hidden;
 			box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 		}
 
+		.slide {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+			transition: opacity 1s ease;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+		}
+
 		.slide.active {
-			display: block;
+			opacity: 1;
+		}
+
+		.slide img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: contain; /* изменено с cover на contain */
+			background: white;
+		}
+
+		.slide-content {
+			position: relative;
+			z-index: 2;
+			padding: 2rem;
+			background: rgba(255, 255, 255, 0.1);
+			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
+			border-top: 1px solid rgba(255, 255, 255, 0.2);
+		}
+
+		.slide-content h3 {
+			color: white;
+			margin-bottom: 0.5rem;
+			text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		}
+
+		.slide-content p {
+			color: rgba(255, 255, 255, 0.9);
+			text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 		}
         
         /* Team Section */
@@ -233,6 +279,43 @@
                 padding: 120px 0 60px;
             }
         }
+		/* Добавьте в секцию стилей */
+		.team-photo {
+			width: 200px;
+			height: 200px;
+			margin: 0 auto 1.5rem;
+			border-radius: 50%;
+			overflow: hidden;
+			background: var(--bg-light);
+		}
+
+		.team-photo img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform 0.3s ease;
+		}
+
+		.team-member:hover .team-photo img {
+			transform: scale(1.05);
+		}
+
+		.team-member {
+			background: white;
+			padding: 2rem;
+			border-radius: 20px;
+			text-align: center;
+			box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+			transition: transform 0.3s ease;
+		}
+
+		.team-member:hover {
+			transform: translateY(-5px);
+		}
+
+		.team-member h3 {
+			margin-bottom: 0.5rem;
+		}
     </style>
 </head>
 <body>
@@ -264,35 +347,41 @@
         </div>
     </section>
 
-    <section class="case-studies">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 1rem;">Наши проекты</h2>
-            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">
-                Примеры успешно реализованных решений
-            </p>
-            <div class="slider" id="projectSlider">
-                <!-- Слайды будут добавляться динамически через JavaScript -->
-            </div>
-        </div>
-    </section>
+	<section class="case-studies">
+		<div class="container">
+			<h2 style="text-align: center; margin-bottom: 1rem;">Наши проекты</h2>
+			<p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">
+				Примеры успешно реализованных решений
+			</p>
+			<div class="slider" id="projectSlider">
+				<!-- Слайды будут добавляться динамически -->
+			</div>
+		</div>
+	</section>
 
-    <section class="team">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 1rem;">Наша команда</h2>
-            <div class="team-grid">
-                <div class="team-member">
-                    <h3>Николай</h3>
-                    <p style="color: var(--text-secondary);">Сооснователь</p>
-                    <p>Отвечает за проектирование архитектуры приложений, прототипирование, дизайн, frontend и частично backend.</p>
-                </div>
-                <div class="team-member">
-                    <h3>Евгений</h3>
-                    <p style="color: var(--text-secondary);">Сооснователь</p>
-                    <p>Занимается настройкой backend и frontend, организацией баз данных, интеграцией с внешними сервисами.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+	<section class="team">
+		<div class="container">
+			<h2 style="text-align: center; margin-bottom: 1rem;">Наша команда</h2>
+			<div class="team-grid">
+				<div class="team-member">
+					<div class="team-photo">
+						<img src="/images/nikolay.png" alt="Николай" onerror="this.src='/api/placeholder/300/300'">
+					</div>
+					<h3>Николай</h3>
+					<p style="color: var(--text-secondary);">Сооснователь</p>
+					<p>Отвечает за проектирование архитектуры приложений, прототипирование, дизайн, frontend и частично backend.</p>
+				</div>
+				<div class="team-member">
+					<div class="team-photo">
+						<img src="/images/eugene.png" alt="Евгений" onerror="this.src='/api/placeholder/300/300'">
+					</div>
+					<h3>Евгений</h3>
+					<p style="color: var(--text-secondary);">Сооснователь</p>
+					<p>Занимается настройкой backend и frontend, организацией баз данных, интеграцией с внешними сервисами.</p>
+				</div>
+			</div>
+		</div>
+	</section>
 
     <section id="contact" class="contact-form">
         <div class="container">
@@ -322,38 +411,54 @@
     </section>
 
 <script>
-    // Слайдер проектов
-    const projects = [
-        {
-            title: "Мобильное приложение Сахалин-Маркет",
-            description: "Кроссплатформенное мобильное приложение для заказа еды и товаров в г. Южно-Сахалинск.",
-            image: "/images/sakh-mob.webp"
-        },
-        {
-            title: "Web-приложение Сахалин-Маркет",
-            description: "Создание масштабируемой платформы для агрегатора доставки еды и товаров, включающее в себя веб-сайт и админ панели для сериса и заведений.",
-            image: "/images/sakh-web.webp"
-        },
-		{
-            title: "Web-Приложение СпортХаб",
-            description: "Полноценная платформа для создания любительских футбольных команд и проведения соревнований и тренировок.",
-            image: "/images/sporthub.webp"
-        }
-        // Добавьте больше проектов
-    ];
+    // Обновленный JavaScript код для слайдера
+function createSlide(project) {
+    return `
+        <div class="slide">
+            <img src="${project.image}" alt="${project.title}">
+            <div class="slide-content">
+                <h3>${project.title}</h3>
+                <p>${project.description}</p>
+            </div>
+        </div>
+    `;
+}
 
-    let currentSlide = 0;
-    const slider = document.getElementById('projectSlider');
+function showSlide(index) {
+    // Удаляем активный класс у всех слайдов
+    const slides = slider.querySelectorAll('.slide');
+    slides.forEach(slide => slide.classList.remove('active'));
+    
+    // Если есть активный слайд, готовим его к удалению
+    const currentActiveSlide = slider.querySelector('.slide.active');
+    if (currentActiveSlide) {
+        currentActiveSlide.style.zIndex = 1;
+    }
+    
+    // Создаём новый слайд
+    slider.insertAdjacentHTML('beforeend', createSlide(projects[index]));
+    
+    // Активируем новый слайд
+    setTimeout(() => {
+        const newSlide = slider.querySelector('.slide:last-child');
+        newSlide.classList.add('active');
+        
+        // Удаляем старый слайд после завершения анимации
+        setTimeout(() => {
+            const oldSlides = slider.querySelectorAll('.slide:not(.active)');
+            oldSlides.forEach(slide => slide.remove());
+        }, 1000);
+    }, 50);
 
-		function createSlide(project) {
-			return `
-				<div class="slide active">
-					<img src="${project.image}" alt="${project.title}" style="width: 100%; height: 400px; object-fit: cover; border-radius: 10px;">
-					<h3 style="margin-top: 1rem;">${project.title}</h3>
-					<p>${project.description}</p>
-				</div>
-			`;
-		}
+    currentSlide = index;
+}
+
+// Инициализация слайдера
+showSlide(0);
+setInterval(() => {
+    currentSlide = (currentSlide + 1) % projects.length;
+    showSlide(currentSlide);
+}, 8000); // 7 секунд показ + 1 секунда на анимацию
 
     function showSlide(index) {
         slider.innerHTML = createSlide(projects[index]);
