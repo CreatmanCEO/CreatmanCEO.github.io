@@ -460,89 +460,76 @@ setInterval(() => {
     showSlide(currentSlide);
 }, 8000); // 7 секунд показ + 1 секунда на анимацию
 
-    function showSlide(index) {
-        slider.innerHTML = createSlide(projects[index]);
-        currentSlide = index;
-    }
 
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % projects.length;
-        showSlide(currentSlide);
-    }
+    // Обработчик формы
+document.getElementById('contactForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        message: formData.get('message')
+    };
 
-    // Инициализация слайдера
-    showSlide(0);
-    setInterval(nextSlide, 5000);
+    // Telegram Bot конфигурация
+    const BOT_TOKEN = '8157141771:AAHxRzh3_kCS1amiPTaXw3FTYnN-GrBdt-g';
+    const CHAT_ID = '338930874';
+    
+    // Используем прокси-сервис для обхода CORS
+    const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
+    const TELEGRAM_API = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
-    // Новый обработчик формы с отправкой в Telegram
-    document.getElementById('contactForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const formData = new FormData(e.target);
-        const data = {
-            name: formData.get('name'),
-            email: formData.get('email'),
-            phone: formData.get('phone'),
-            message: formData.get('message')
-        };
-
-        // Telegram Bot конфигурация
-        const BOT_TOKEN = '8157141771:AAHxRzh3_kCS1amiPTaXw3FTYnN-GrBdt-g';
-        const TELEGRAM_API = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-        
-        // ID чата можно получить, написав боту /start и затем обратившись к API:
-        // https://api.telegram.org/bot<BOT_TOKEN>/getUpdates
-        // Замените CHAT_ID на полученный ID после выполнения команды выше
-        const CHAT_ID = '338930874'; // Нужно заменить на реальный ID чата
-
-        // Форматируем сообщение для Telegram
-        const message = `
+    // Форматируем сообщение для Telegram
+    const message = `
 🔥 Новая заявка с сайта!
 
 👤 Имя: ${data.name}
 📧 Email: ${data.email}
 📱 Телефон: ${data.phone}
+
 💬 Сообщение:
 ${data.message}
-        `;
+    `;
 
-        try {
-            // Показываем индикатор загрузки
-            const submitButton = e.target.querySelector('button[type="submit"]');
-            const originalText = submitButton.textContent;
-            submitButton.disabled = true;
-            submitButton.textContent = 'Отправка...';
+    try {
+        // Показываем индикатор загрузки
+        const submitButton = e.target.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+        submitButton.textContent = 'Отправка...';
 
-            // Отправляем сообщение в Telegram
-            const response = await fetch(TELEGRAM_API, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    chat_id: CHAT_ID,
-                    text: message,
-                    parse_mode: 'HTML'
-                })
-            });
+        // Отправляем сообщение в Telegram через прокси
+        const response = await fetch(PROXY_URL + TELEGRAM_API, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Origin': window.location.origin
+            },
+            body: JSON.stringify({
+                chat_id: CHAT_ID,
+                text: message,
+                parse_mode: 'HTML'
+            })
+        });
 
-            if (!response.ok) {
-                throw new Error('Ошибка отправки в Telegram');
-            }
-
-            // Успешная отправка
-            alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
-            e.target.reset();
-        } catch (error) {
-            console.error('Ошибка:', error);
-            alert('Произошла ошибка при отправке формы. Пожалуйста, попробуйте позже.');
-        } finally {
-            // Возвращаем кнопку в исходное состояние
-            const submitButton = e.target.querySelector('button[type="submit"]');
-            submitButton.disabled = false;
-            submitButton.textContent = 'Отправить заявку';
+        if (!response.ok) {
+            throw new Error('Ошибка отправки в Telegram');
         }
-    });
+
+        // Успешная отправка
+        alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
+        e.target.reset();
+    } catch (error) {
+        console.error('Ошибка:', error);
+        alert('Произошла ошибка при отправке формы. Пожалуйста, попробуйте позже.');
+    } finally {
+        // Возвращаем кнопку в исходное состояние
+        const submitButton = e.target.querySelector('button[type="submit"]');
+        submitButton.disabled = false;
+        submitButton.textContent = 'Отправить заявку';
+    }
+});
 </script>
 </body>
 </html>
