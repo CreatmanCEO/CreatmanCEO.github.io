@@ -162,51 +162,99 @@
 
 		/* Мобильные стили */
 		@media (max-width: 768px) {
-			.slider {
-				aspect-ratio: auto;
-				height: auto;
-				background: none;
-				box-shadow: none;
-			}
+    .nav-links {
+        display: none;
+    }
+    
+    .hero {
+        padding: 100px 0 40px;
+    }
 
-			.slide {
-				position: relative;
-				height: auto;
-				display: none;
-				flex-direction: column;
-			}
+    /* Уменьшаем отступы между секциями */
+    .case-studies,
+    .team,
+    .contact-form {
+        padding: 40px 0;
+    }
 
-			.slide.active {
-				display: flex;
-			}
+    /* Слайдер стили */
+    .slider {
+        aspect-ratio: auto;
+        height: auto;
+        background: none;
+        box-shadow: none;
+        margin-top: 1rem;
+    }
 
-			.slide img {
-				position: relative;
-				aspect-ratio: 16/9;
-				object-fit: cover;
-				border-radius: 20px;
-			}
+    .slide {
+        position: relative;
+        height: auto;
+        display: none;
+        flex-direction: column;
+    }
 
-			.slide-content {
-				position: relative;
-				margin-top: 1rem;
-				background: none;
-				backdrop-filter: none;
-				-webkit-backdrop-filter: none;
-				border: none;
-				padding: 1rem 0;
-			}
+    .slide.active {
+        display: flex;
+    }
 
-			.slide-content h3 {
-				font-size: 1.5rem;
-				margin-bottom: 0.5rem;
-			}
+    .slide img {
+        position: relative;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        border-radius: 20px;
+    }
 
-			.slide-content p {
-				font-size: 1rem;
-				line-height: 1.5;
-			}
-		}
+    .slide-content {
+        position: relative;
+        margin-top: 1rem;
+        background: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
+        padding: 1rem 0;
+    }
+
+    .slide-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .slide-content p {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    /* Дополнительные стили для мобильной версии */
+    .team-grid {
+        gap: 20px;
+        margin-top: 1.5rem;
+    }
+
+    .team-member {
+        padding: 1.5rem;
+    }
+
+    .form-container {
+        padding: 1.5rem;
+    }
+
+    h2 {
+        margin-bottom: 0.5rem !important;
+    }
+
+    .case-studies p,
+    .team p {
+        margin-bottom: 1.5rem !important;
+    }
+
+    .hero h1 {
+        font-size: 36px !important;
+    }
+
+    .hero p {
+        font-size: 16px !important;
+    }
+}
         		/* Добавьте это к существующим стилям слайда */
 		.slide img {
 			cursor: pointer; /* Показываем, что на изображение можно кликнуть */
