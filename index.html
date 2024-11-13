@@ -107,16 +107,16 @@
         }
         
         .slide {
-            display: none;
-            padding: 2rem;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .slide.active {
-            display: block;
-        }
+			display: none;
+			padding: 2rem;
+			background: white;
+			border-radius: 20px;
+			box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+		}
+
+		.slide.active {
+			display: block;
+		}
         
         /* Team Section */
         .team {
@@ -333,7 +333,7 @@
             title: "Web-приложение Сахалин-Маркет",
             description: "Создание масштабируемой платформы для агрегатора доставки еды и товаров, включающее в себя веб-сайт и админ панели для сериса и заведений.",
             image: "/images/sakh-web.webp"
-        }
+        },
 		{
             title: "Web-Приложение СпортХаб",
             description: "Полноценная платформа для создания любительских футбольных команд и проведения соревнований и тренировок.",
@@ -345,15 +345,15 @@
     let currentSlide = 0;
     const slider = document.getElementById('projectSlider');
 
-    function createSlide(project) {
-        return `
-            <div class="slide">
-                <img src="${project.image}" alt="${project.title}" style="width: 100%; border-radius: 10px;">
-                <h3 style="margin-top: 1rem;">${project.title}</h3>
-                <p>${project.description}</p>
-            </div>
-        `;
-    }
+		function createSlide(project) {
+			return `
+				<div class="slide active">
+					<img src="${project.image}" alt="${project.title}" style="width: 100%; height: 400px; object-fit: cover; border-radius: 10px;">
+					<h3 style="margin-top: 1rem;">${project.title}</h3>
+					<p>${project.description}</p>
+				</div>
+			`;
+		}
 
     function showSlide(index) {
         slider.innerHTML = createSlide(projects[index]);
@@ -397,12 +397,47 @@
 👤 Имя: ${data.name}
 📧 Email: ${data.email}
 📱 Телефон: ${data.phone}
-
 💬 Сообщение:
 ${data.message}
         `;
 
         try {
             // Показываем индикатор загрузки
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Отправка...';
+
+            // Отправляем сообщение в Telegram
+            const response = await fetch(TELEGRAM_API, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: message,
+                    parse_mode: 'HTML'
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Ошибка отправки в Telegram');
+            }
+
+            // Успешная отправка
+            alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
+            e.target.reset();
+        } catch (error) {
+            console.error('Ошибка:', error);
+            alert('Произошла ошибка при отправке формы. Пожалуйста, попробуйте позже.');
+        } finally {
+            // Возвращаем кнопку в исходное состояние
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            submitButton.disabled = false;
+            submitButton.textContent = 'Отправить заявку';
+        }
+    });
+</script>
 </body>
 </html>
