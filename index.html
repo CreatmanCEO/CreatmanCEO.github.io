@@ -96,9 +96,6 @@
         }
         
         /* Case Studies Slider */
-        .case-studies {
-            padding: 100px 0;
-        }
         
         .case-studies {
 			padding: 100px 0;
@@ -210,7 +207,50 @@
 				line-height: 1.5;
 			}
 		}
-        
+        		/* Добавьте это к существующим стилям слайда */
+		.slide img {
+			cursor: pointer; /* Показываем, что на изображение можно кликнуть */
+		}
+		
+				/* Стили для модального окна */
+		.modal {
+			display: none;
+			position: fixed;
+			z-index: 9999;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.9);
+			overflow: hidden;
+		}
+
+		.modal img {
+			margin: auto;
+			display: block;
+			width: 100%;
+			height: 100%;
+			max-width: 100%;
+			max-height: 100vh;
+			object-fit: contain;
+			padding: 20px;
+		}
+
+		.close-modal {
+			position: absolute;
+			right: 25px;
+			top: 15px;
+			color: #f1f1f1;
+			font-size: 40px;
+			font-weight: bold;
+			cursor: pointer;
+			z-index: 10000;
+		}
+
+		.close-modal:hover {
+			color: #bbb;
+		}
+
         /* Team Section */
         .team {
             padding: 100px 0;
@@ -403,6 +443,10 @@
 			<div class="slider" id="projectSlider">
 				<!-- Слайды будут добавляться динамически -->
 			</div>
+			<div id="fullscreenModal" class="modal">
+				<span class="close-modal">&times;</span>
+				<img id="modalImage" src="" alt="">
+			</div>
 		</div>
 	</section>
 
@@ -480,10 +524,16 @@ const projects = [
 let currentSlide = 0;
 const slider = document.getElementById('projectSlider');
 
+// Модальное окно
+const modal = document.getElementById('fullscreenModal');
+const modalImg = document.getElementById('modalImage');
+const closeBtn = document.getElementsByClassName('close-modal')[0];
+
+// Функция создания слайда (обновленная версия с onclick)
 function createSlide(project) {
     return `
         <div class="slide">
-            <img src="${project.image}" alt="${project.title}">
+            <img src="${project.image}" alt="${project.title}" onclick="openModal('${project.image}')">
             <div class="slide-content">
                 <h3>${project.title}</h3>
                 <p>${project.description}</p>
@@ -492,26 +542,22 @@ function createSlide(project) {
     `;
 }
 
+// Функция показа слайда
 function showSlide(index) {
-    // Удаляем активный класс у всех слайдов
     const slides = slider.querySelectorAll('.slide');
     slides.forEach(slide => slide.classList.remove('active'));
     
-    // Если есть активный слайд, готовим его к удалению
     const currentActiveSlide = slider.querySelector('.slide.active');
     if (currentActiveSlide) {
         currentActiveSlide.style.zIndex = 1;
     }
     
-    // Создаём новый слайд
     slider.insertAdjacentHTML('beforeend', createSlide(projects[index]));
     
-    // Активируем новый слайд
     setTimeout(() => {
         const newSlide = slider.querySelector('.slide:last-child');
         newSlide.classList.add('active');
         
-        // Удаляем старый слайд после завершения анимации
         setTimeout(() => {
             const oldSlides = slider.querySelectorAll('.slide:not(.active)');
             oldSlides.forEach(slide => slide.remove());
@@ -521,15 +567,61 @@ function showSlide(index) {
     currentSlide = index;
 }
 
-		// Инициализация слайдера
-		showSlide(0);
-		// Автоматическая смена слайдов
-		setInterval(() => {
-			currentSlide = (currentSlide + 1) % projects.length;
-			showSlide(currentSlide);
-		}, 8000);
+// Функции для модального окна
+function openModal(imgSrc) {
+    modal.style.display = "block";
+    modalImg.src = imgSrc;
+    document.body.style.overflow = 'hidden';
+}
 
-		// Обработчик формы
+function closeModal() {
+    modal.style.display = "none";
+    document.body.style.overflow = '';
+}
+
+// Обработчики событий для модального окна
+closeBtn.onclick = closeModal;
+
+modal.onclick = function(e) {
+    if (e.target === modal) {
+        closeModal();
+    }
+}
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeModal();
+    }
+});
+
+// Обработка свайпов на мобильных
+let touchStartY = 0;
+let touchEndY = 0;
+
+modal.addEventListener('touchstart', function(e) {
+    touchStartY = e.changedTouches[0].screenY;
+}, false);
+
+modal.addEventListener('touchend', function(e) {
+    touchEndY = e.changedTouches[0].screenY;
+    handleSwipe();
+}, false);
+
+function handleSwipe() {
+    const swipeDistance = Math.abs(touchEndY - touchStartY);
+    if (swipeDistance > 100) {
+        closeModal();
+    }
+}
+
+// Инициализация слайдера
+showSlide(0);
+setInterval(() => {
+    currentSlide = (currentSlide + 1) % projects.length;
+    showSlide(currentSlide);
+}, 8000);
+
+// Обработчик формы (оставьте ваш текущий код обработчика формы без изменений)
 document.getElementById('contactForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -556,18 +648,15 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
             body: JSON.stringify(data)
         });
 
-        const responseData = await response.json(); // добавили чтение ответа
-
         if (!response.ok) {
-            console.error('Server response:', responseData); // логируем ответ сервера
-            throw new Error(`Ошибка отправки формы: ${response.status} ${response.statusText}`);
+            throw new Error('Ошибка отправки формы');
         }
 
         // Успешная отправка
         alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
         e.target.reset();
     } catch (error) {
-        console.error('Подробности ошибки:', error); // более подробное логирование
+        console.error('Ошибка:', error);
         alert('Произошла ошибка при отправке формы. Пожалуйста, попробуйте позже.');
     } finally {
         // Возвращаем кнопку в исходное состояние
