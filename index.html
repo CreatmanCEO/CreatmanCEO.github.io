@@ -3,193 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- SEO Meta Tags -->
-    <title>Веб-разработка и мобильные приложения | CREATMAN</title>
-    <meta name="description" content="Профессиональная разработка сайтов и мобильных приложений. Создаем современные веб-решения для вашего бизнеса.">
-    <meta name="keywords" content="веб-разработка, мобильные приложения, создание сайтов, разработка приложений">
+    <title>CREATMAN | Разработка мобильных приложений и сайтов</title>
+    <meta name="description" content="Разработка мобильных приложений на Flutter, создание веб-приложений и сайтов. Эффективные решения для вашего бизнеса.">
+    <meta name="keywords" content="разработка мобильных приложений, Flutter, веб-разработка, создание сайтов, CRM системы, Telegram боты">
     
     <!-- Open Graph Tags -->
-    <meta property="og:title" content="Веб-разработка и мобильные приложения">
-    <meta property="og:description" content="Профессиональная разработка сайтов и мобильных приложений">
-    <meta property="og:type" content="website">
+    <meta property="og:title" content="CREATMAN | Разработка мобильных приложений и сайтов">
+    <meta property="og:description" content="Создаем эффективные мобильные и веб-решения для вашего бизнеса">
     
-    <!-- Стили -->
+    <!-- Подключаем шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary-color: #2563eb;
-            --text-color: #1f2937;
-            --bg-color: #ffffff;
+            --primary: #2B59FF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --bg-light: #F5F5F5;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
         }
         
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background: var(--bg-color);
+            line-height: 1.5;
+            color: var(--text-primary);
+            overflow-x: hidden;
         }
         
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
         header {
-            background: var(--primary-color);
-            color: white;
-            padding: 2rem 1rem;
-            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 20px 0;
         }
         
-        nav {
-            background: #1d4ed8;
-            padding: 1rem;
-        }
-        
-        nav ul {
-            list-style: none;
+        .header-content {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        nav a {
-            color: white;
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
             text-decoration: none;
         }
         
-        section {
-            padding: 3rem 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
+        /* Hero section */
+        .hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(135deg, #F5F5F5 0%, #FFFFFF 100%);
         }
         
+        .hero h1 {
+            font-size: 56px;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            max-width: 800px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+        
+        /* Services */
         .services {
+            padding: 100px 0;
+        }
+        
+        .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 2rem 0;
+            gap: 30px;
+            margin-top: 50px;
         }
         
         .service-card {
-            padding: 1.5rem;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             transition: transform 0.3s ease;
         }
         
         .service-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
         }
         
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
+        .service-icon {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 20px;
         }
         
-        .form-group {
-            margin-bottom: 1rem;
+        /* Process */
+        .process {
+            padding: 100px 0;
+            background: var(--bg-light);
         }
         
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
         }
         
-        input, textarea {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid #e5e7eb;
-            border-radius: 4px;
+        .step-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            position: relative;
         }
         
-        button {
-            background: var(--primary-color);
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            background: var(--primary);
             color: white;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
         }
         
-        footer {
-            background: var(--primary-color);
-            color: white;
+        /* Contact */
+        .contact {
+            padding: 100px 0;
+        }
+        
+        .contact-info {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .contact-item {
+            flex: 1;
+            padding: 30px;
+            background: var(--bg-light);
+            border-radius: 20px;
             text-align: center;
-            padding: 1rem;
-            margin-top: 2rem;
+        }
+        
+        .contact-item a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 50px 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
         @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                text-align: center;
+            .hero h1 {
+                font-size: 36px;
             }
             
-            .services {
-                grid-template-columns: 1fr;
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>CREATMAN</h1>
-        <p>Профессиональная разработка сайтов и мобильных приложений</p>
+        <div class="container header-content">
+            <a href="#" class="logo">CREATMAN</a>
+            <nav>
+                <a href="tel:+79952997565" style="color: var(--primary); text-decoration: none; font-weight: 500;">+7 995 299-75-65</a>
+            </nav>
+        </div>
     </header>
     
-    <nav>
-        <ul>
-            <li><a href="#services">Услуги</a></li>
-            <li><a href="#portfolio">Портфолио</a></li>
-            <li><a href="#contact">Контакты</a></li>
-        </ul>
-    </nav>
+    <section class="hero">
+        <div class="container">
+            <h1>Разработка мобильных приложений и веб-решений для вашего бизнеса</h1>
+            <p>Создаем эффективные решения на Flutter и современных веб-технологиях, которые помогут вашему бизнесу расти</p>
+            <a href="#contact" style="background: var(--primary); color: white; padding: 15px 30px; border-radius: 30px; text-decoration: none; display: inline-block;">Обсудить проект</a>
+        </div>
+    </section>
     
-    <section id="services">
-        <h2>Наши услуги</h2>
-        <div class="services">
-            <div class="service-card">
-                <h3>Разработка сайтов</h3>
-                <p>Создаем современные адаптивные веб-сайты для вашего бизнеса</p>
-            </div>
-            <div class="service-card">
-                <h3>Мобильные приложения</h3>
-                <p>Разрабатываем нативные приложения для iOS и Android</p>
-            </div>
-            <div class="service-card">
-                <h3>Web-приложения</h3>
-                <p>Создаем прогрессивные веб-приложения (PWA)</p>
+    <section class="services">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 20px;">Наши специализации</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Мобильные приложения</h3>
+                    <p>Разработка на Flutter для iOS и Android. Быстро, качественно и доступно.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛒</div>
+                    <h3>Интернет-магазины</h3>
+                    <p>Создание эффективных платформ для электронной коммерции.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Сервисные приложения</h3>
+                    <p>Автоматизация процессов и улучшение взаимодействия с клиентами.</p>
+                </div>
             </div>
         </div>
     </section>
     
-    <section id="portfolio">
-        <h2>Портфолио</h2>
-        <!-- Здесь будут ваши проекты -->
+    <section class="process">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 20px;">Как мы работаем</h2>
+            <div class="process-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Анализ и ТЗ</h3>
+                    <p>Составляем подробное техническое задание и смету под ваши задачи</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Дизайн</h3>
+                    <p>Создаем уникальный дизайн в Figma с учетом современных тенденций</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Разработка</h3>
+                    <p>Воплощаем проект в жизнь, используя современные технологии</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Запуск</h3>
+                    <p>Тестируем и публикуем ваше приложение в магазинах</p>
+                </div>
+            </div>
+        </div>
     </section>
     
-    <section id="contact">
-        <h2>Связаться с нами</h2>
-        <form class="contact-form">
-            <div class="form-group">
-                <label for="name">Имя</label>
-                <input type="text" id="name" name="name" required>
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 20px;">Свяжитесь с нами</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Телефон</h3>
+                    <a href="tel:+79952997565">+7 995 299-75-65</a>
+                </div>
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <a href="mailto:creatmanick@gmail.com">creatmanick@gmail.com</a>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="message">Сообщение</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-            <button type="submit">Отправить</button>
-        </form>
+        </div>
     </section>
     
     <footer>
-        <p>&copy; 2024 CREATMAN. Все права защищены.</p>
+        <div class="container footer-content">
+            <div class="logo" style="color: white;">CREATMAN</div>
+            <p>&copy; 2024 CREATMAN. Все права защищены.</p>
+        </div>
     </footer>
 </body>
 </html>
