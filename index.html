@@ -147,21 +147,23 @@
 			position: relative;
 			z-index: 2;
 			padding: 2rem;
-			background: rgba(255, 255, 255, 0.1);
+			background: rgba(255, 255, 255, 0.3); /* увеличили непрозрачность с 0.1 до 0.3 */
 			backdrop-filter: blur(10px);
 			-webkit-backdrop-filter: blur(10px);
 			border-top: 1px solid rgba(255, 255, 255, 0.2);
+			padding-top: 3rem; /* увеличили высоту добавив padding сверху */
+			padding-bottom: 3rem; /* и снизу */
 		}
 
 		.slide-content h3 {
-			color: white;
+			color: black; /* изменили с white на black */
 			margin-bottom: 0.5rem;
-			text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+			text-shadow: none; /* убрали тень, так как теперь текст черный */
 		}
 
 		.slide-content p {
-			color: rgba(255, 255, 255, 0.9);
-			text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+			color: black; /* изменили с rgba(255, 255, 255, 0.9) на black */
+			text-shadow: none; /* убрали тень */
 		}
         
         /* Team Section */
@@ -474,16 +476,15 @@ function showSlide(index) {
     currentSlide = index;
 }
 
-// Инициализация слайдера
-showSlide(0);
-// Автоматическая смена слайдов
-setInterval(() => {
-    currentSlide = (currentSlide + 1) % projects.length;
-    showSlide(currentSlide);
-}, 8000);
+		// Инициализация слайдера
+		showSlide(0);
+		// Автоматическая смена слайдов
+		setInterval(() => {
+			currentSlide = (currentSlide + 1) % projects.length;
+			showSlide(currentSlide);
+		}, 8000);
 
-// Обработчик формы
-// Обработчик формы
+		// Обработчик формы
 document.getElementById('contactForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -510,15 +511,18 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
             body: JSON.stringify(data)
         });
 
+        const responseData = await response.json(); // добавили чтение ответа
+
         if (!response.ok) {
-            throw new Error('Ошибка отправки формы');
+            console.error('Server response:', responseData); // логируем ответ сервера
+            throw new Error(`Ошибка отправки формы: ${response.status} ${response.statusText}`);
         }
 
         // Успешная отправка
         alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
         e.target.reset();
     } catch (error) {
-        console.error('Ошибка:', error);
+        console.error('Подробности ошибки:', error); // более подробное логирование
         alert('Произошла ошибка при отправке формы. Пожалуйста, попробуйте позже.');
     } finally {
         // Возвращаем кнопку в исходное состояние
