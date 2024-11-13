@@ -3,23 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CREATMAN | Разработка мобильных приложений и сайтов</title>
-    <meta name="description" content="Разработка мобильных приложений на Flutter, создание веб-приложений и сайтов. Эффективные решения для вашего бизнеса.">
-    <meta name="keywords" content="разработка мобильных приложений, Flutter, веб-разработка, создание сайтов, CRM системы, Telegram боты">
-    
-    <!-- Open Graph Tags -->
-    <meta property="og:title" content="CREATMAN | Разработка мобильных приложений и сайтов">
-    <meta property="og:description" content="Создаем эффективные мобильные и веб-решения для вашего бизнеса">
-    
-    <!-- Подключаем шрифты -->
+    <title>CREATMAN | Воплощаем ваши идеи в цифровой реальности</title>
+    <meta name="description" content="Разработка мобильных приложений на Flutter, создание веб-приложений и сайтов. Индивидуальный подход к каждому проекту.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #2B59FF;
+            --primary: #0B52B0;  /* Более глубокий синий */
+            --secondary: #22A699; /* Бирюзовый акцент */
+            --accent: #F2B544;    /* Золотой акцент */
             --text-primary: #1A1A1A;
             --text-secondary: #666666;
-            --bg-light: #F5F5F5;
+            --bg-light: #F8FAFC;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
         }
         
         * {
@@ -30,9 +26,8 @@
         }
         
         body {
-            line-height: 1.5;
+            line-height: 1.6;
             color: var(--text-primary);
-            overflow-x: hidden;
         }
         
         .container {
@@ -41,170 +36,201 @@
             padding: 0 20px;
         }
         
-        /* Header */
+        /* Header styles */
         header {
             position: fixed;
             width: 100%;
             top: 0;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 20px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
         }
         
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1rem 0;
         }
         
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary);
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-primary);
             text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
         }
         
-        /* Hero section */
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
         .hero {
-            padding: 180px 0 100px;
-            background: linear-gradient(135deg, #F5F5F5 0%, #FFFFFF 100%);
+            padding: 160px 0 100px;
+            background: var(--bg-light);
+            position: relative;
+            overflow: hidden;
         }
         
-        .hero h1 {
-            font-size: 56px;
-            line-height: 1.2;
-            margin-bottom: 30px;
-            max-width: 800px;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: var(--gradient);
+            opacity: 0.1;
+            transform: rotate(-30deg);
         }
         
-        .hero p {
-            font-size: 20px;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin-bottom: 40px;
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
         
-        /* Services */
-        .services {
+        /* Case Studies Slider */
+        .case-studies {
             padding: 100px 0;
         }
         
-        .services-grid {
+        .slider {
+            overflow: hidden;
+            position: relative;
+            margin-top: 2rem;
+        }
+        
+        .slide {
+            display: none;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        /* Team Section */
+        .team {
+            padding: 100px 0;
+            background: var(--bg-light);
+        }
+        
+        .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-top: 50px;
+            margin-top: 3rem;
         }
         
-        .service-card {
+        .team-member {
             background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .service-icon {
-            font-size: 40px;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-        
-        /* Process */
-        .process {
-            padding: 100px 0;
-            background: var(--bg-light);
-        }
-        
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .step-card {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            position: relative;
-        }
-        
-        .step-number {
-            position: absolute;
-            top: -20px;
-            left: 30px;
-            background: var(--primary);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-        }
-        
-        /* Contact */
-        .contact {
-            padding: 100px 0;
-        }
-        
-        .contact-info {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-        
-        .contact-item {
-            flex: 1;
-            padding: 30px;
-            background: var(--bg-light);
+            padding: 2rem;
             border-radius: 20px;
             text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
         
-        .contact-item a {
-            color: var(--primary);
-            text-decoration: none;
+        /* Contact Form */
+        .contact-form {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--bg-light);
+            border-radius: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
             font-weight: 500;
         }
         
-        /* Footer */
-        footer {
-            background: var(--text-primary);
-            color: white;
-            padding: 50px 0;
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.3s;
         }
         
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        .submit-btn {
+            background: var(--gradient);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Advantages */
+        .advantages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .advantage-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        
+        .advantage-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate {
+            animation: fadeIn 0.6s ease-out forwards;
         }
         
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 36px;
+            .nav-links {
+                display: none;
             }
             
-            .hero p {
-                font-size: 18px;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
+            .hero {
+                padding: 120px 0 60px;
             }
         }
     </style>
@@ -212,93 +238,171 @@
 <body>
     <header>
         <div class="container header-content">
-            <a href="#" class="logo">CREATMAN</a>
-            <nav>
-                <a href="tel:+79952997565" style="color: var(--primary); text-decoration: none; font-weight: 500;">+7 995 299-75-65</a>
+            <a href="/" class="logo" style="color: var(--primary); text-decoration: none; font-weight: 700; font-size: 24px;">
+                CREATMAN
+            </a>
+            <nav class="nav-links">
+                <a href="/">Главная</a>
+                <a href="/portfolio.html">Портфолио</a>
+                <a href="/blog.html">Блог</a>
+                <a href="#contact">Связаться</a>
             </nav>
         </div>
     </header>
-    
+
     <section class="hero">
-        <div class="container">
-            <h1>Разработка мобильных приложений и веб-решений для вашего бизнеса</h1>
-            <p>Создаем эффективные решения на Flutter и современных веб-технологиях, которые помогут вашему бизнесу расти</p>
-            <a href="#contact" style="background: var(--primary); color: white; padding: 15px 30px; border-radius: 30px; text-decoration: none; display: inline-block;">Обсудить проект</a>
+        <div class="container hero-content">
+            <h1 style="font-size: 48px; line-height: 1.2; margin-bottom: 1.5rem;">
+                Воплощаем ваши идеи<br>в цифровой реальности
+            </h1>
+            <p style="font-size: 20px; color: var(--text-secondary); max-width: 600px; margin-bottom: 2rem;">
+                Мы создаем удобные для пользователя, интуитивно понятные и визуально привлекательные мобильные приложения, веб-приложения и веб-сайты, адаптированные к потребностям вашего бизнеса.
+            </p>
+            <a href="#contact" class="submit-btn" style="text-decoration: none; display: inline-block;">
+                Обсудить проект
+            </a>
         </div>
     </section>
-    
-    <section class="services">
+
+    <section class="case-studies">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 20px;">Наши специализации</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">📱</div>
-                    <h3>Мобильные приложения</h3>
-                    <p>Разработка на Flutter для iOS и Android. Быстро, качественно и доступно.</p>
+            <h2 style="text-align: center; margin-bottom: 1rem;">Наши проекты</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">
+                Примеры успешно реализованных решений
+            </p>
+            <div class="slider" id="projectSlider">
+                <!-- Слайды будут добавляться динамически через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section class="team">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 1rem;">Наша команда</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <h3>Николай</h3>
+                    <p style="color: var(--text-secondary);">Сооснователь</p>
+                    <p>Отвечает за проектирование архитектуры приложений, прототипирование, дизайн, frontend и частично backend.</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">🛒</div>
-                    <h3>Интернет-магазины</h3>
-                    <p>Создание эффективных платформ для электронной коммерции.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔧</div>
-                    <h3>Сервисные приложения</h3>
-                    <p>Автоматизация процессов и улучшение взаимодействия с клиентами.</p>
+                <div class="team-member">
+                    <h3>Евгений</h3>
+                    <p style="color: var(--text-secondary);">Сооснователь</p>
+                    <p>Занимается настройкой backend и frontend, организацией баз данных, интеграцией с внешними сервисами.</p>
                 </div>
             </div>
         </div>
     </section>
-    
-    <section class="process">
+
+    <section id="contact" class="contact-form">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 20px;">Как мы работаем</h2>
-            <div class="process-steps">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3>Анализ и ТЗ</h3>
-                    <p>Составляем подробное техническое задание и смету под ваши задачи</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3>Дизайн</h3>
-                    <p>Создаем уникальный дизайн в Figma с учетом современных тенденций</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3>Разработка</h3>
-                    <p>Воплощаем проект в жизнь, используя современные технологии</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">4</div>
-                    <h3>Запуск</h3>
-                    <p>Тестируем и публикуем ваше приложение в магазинах</p>
-                </div>
+            <h2 style="text-align: center; margin-bottom: 1rem;">Обсудить проект</h2>
+            <div class="form-container">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Ваше имя</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Телефон</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Описание проекта</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Отправить заявку</button>
+                </form>
             </div>
         </div>
     </section>
-    
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 20px;">Свяжитесь с нами</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <h3>Телефон</h3>
-                    <a href="tel:+79952997565">+7 995 299-75-65</a>
-                </div>
-                <div class="contact-item">
-                    <h3>Email</h3>
-                    <a href="mailto:creatmanick@gmail.com">creatmanick@gmail.com</a>
-                </div>
+
+<script>
+    // Слайдер проектов
+    const projects = [
+        {
+            title: "Мобильное приложение Сахалин-Маркет",
+            description: "Кроссплатформенное мобильное приложение для заказа еды и товаров в г. Южно-Сахалинск.",
+            image: "/images/sakh-mob.webp"
+        },
+        {
+            title: "Web-приложение Сахалин-Маркет",
+            description: "Создание масштабируемой платформы для агрегатора доставки еды и товаров, включающее в себя веб-сайт и админ панели для сериса и заведений.",
+            image: "/images/sakh-web.webp"
+        }
+		{
+            title: "Web-Приложение СпортХаб",
+            description: "Полноценная платформа для создания любительских футбольных команд и проведения соревнований и тренировок.",
+            image: "/images/sporthub.webp"
+        }
+        // Добавьте больше проектов
+    ];
+
+    let currentSlide = 0;
+    const slider = document.getElementById('projectSlider');
+
+    function createSlide(project) {
+        return `
+            <div class="slide">
+                <img src="${project.image}" alt="${project.title}" style="width: 100%; border-radius: 10px;">
+                <h3 style="margin-top: 1rem;">${project.title}</h3>
+                <p>${project.description}</p>
             </div>
-        </div>
-    </section>
-    
-    <footer>
-        <div class="container footer-content">
-            <div class="logo" style="color: white;">CREATMAN</div>
-            <p>&copy; 2024 CREATMAN. Все права защищены.</p>
-        </div>
-    </footer>
+        `;
+    }
+
+    function showSlide(index) {
+        slider.innerHTML = createSlide(projects[index]);
+        currentSlide = index;
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % projects.length;
+        showSlide(currentSlide);
+    }
+
+    // Инициализация слайдера
+    showSlide(0);
+    setInterval(nextSlide, 5000);
+
+    // Новый обработчик формы с отправкой в Telegram
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(e.target);
+        const data = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            phone: formData.get('phone'),
+            message: formData.get('message')
+        };
+
+        // Telegram Bot конфигурация
+        const BOT_TOKEN = '8157141771:AAHxRzh3_kCS1amiPTaXw3FTYnN-GrBdt-g';
+        const TELEGRAM_API = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+        
+        // ID чата можно получить, написав боту /start и затем обратившись к API:
+        // https://api.telegram.org/bot<BOT_TOKEN>/getUpdates
+        // Замените CHAT_ID на полученный ID после выполнения команды выше
+        const CHAT_ID = '338930874'; // Нужно заменить на реальный ID чата
+
+        // Форматируем сообщение для Telegram
+        const message = `
+🔥 Новая заявка с сайта!
+
+👤 Имя: ${data.name}
+📧 Email: ${data.email}
+📱 Телефон: ${data.phone}
+
+💬 Сообщение:
+${data.message}
+        `;
+
+        try {
+            // Показываем индикатор загрузки
 </body>
 </html>
