@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Meta Tags -->
+    <title>Веб-разработка и мобильные приложения | CREATMAN</title>
+    <meta name="description" content="Профессиональная разработка сайтов и мобильных приложений. Создаем современные веб-решения для вашего бизнеса.">
+    <meta name="keywords" content="веб-разработка, мобильные приложения, создание сайтов, разработка приложений">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Веб-разработка и мобильные приложения">
+    <meta property="og:description" content="Профессиональная разработка сайтов и мобильных приложений">
+    <meta property="og:type" content="website">
+    
+    <!-- Стили -->
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --text-color: #1f2937;
+            --bg-color: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--bg-color);
+        }
+        
+        header {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        
+        nav {
+            background: #1d4ed8;
+            padding: 1rem;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        section {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+        
+        .service-card {
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+        }
+        
+        button {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .services {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CREATMAN</h1>
+        <p>Профессиональная разработка сайтов и мобильных приложений</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#services">Услуги</a></li>
+            <li><a href="#portfolio">Портфолио</a></li>
+            <li><a href="#contact">Контакты</a></li>
+        </ul>
+    </nav>
+    
+    <section id="services">
+        <h2>Наши услуги</h2>
+        <div class="services">
+            <div class="service-card">
+                <h3>Разработка сайтов</h3>
+                <p>Создаем современные адаптивные веб-сайты для вашего бизнеса</p>
+            </div>
+            <div class="service-card">
+                <h3>Мобильные приложения</h3>
+                <p>Разрабатываем нативные приложения для iOS и Android</p>
+            </div>
+            <div class="service-card">
+                <h3>Web-приложения</h3>
+                <p>Создаем прогрессивные веб-приложения (PWA)</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="portfolio">
+        <h2>Портфолио</h2>
+        <!-- Здесь будут ваши проекты -->
+    </section>
+    
+    <section id="contact">
+        <h2>Связаться с нами</h2>
+        <form class="contact-form">
+            <div class="form-group">
+                <label for="name">Имя</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Сообщение</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit">Отправить</button>
+        </form>
+    </section>
+    
+    <footer>
+        <p>&copy; 2024 CREATMAN. Все права защищены.</p>
+    </footer>
+</body>
+</html>
