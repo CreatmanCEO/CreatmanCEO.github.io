@@ -197,41 +197,28 @@ header {
 
 /* Слайдер проектов */
 .slider {
-    display: flex;
-    overflow-x: auto; /* Добавляем горизонтальную прокрутку */
-    scroll-snap-type: x mandatory;
-    gap: 20px; /* Расстояние между слайдами */
-    padding: 0; /* Убираем боковые отступы */
+    margin-top: 2rem;
     width: 100%;
-}
-
-.slider-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border: none;
-    font-size: 24px;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 2;
-}
-
-.left-arrow {
-    left: 10px;
-}
-
-.right-arrow {
-    right: 10px;
+    aspect-ratio: 1879/1388;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    position: relative;
+    background: white;
 }
 
 .slide {
-    scroll-snap-align: start;
-    min-width: 100%;
-    transition: transform 1s ease;
-    position: relative;
-    flex-shrink: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: white;
 }
 
 .slide.active {
@@ -239,9 +226,11 @@ header {
 }
 
 .slide img {
+    position: absolute;
     width: 100%;
-    height: auto;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
+    cursor: pointer;
 }
 
 .slide-content {
@@ -433,24 +422,20 @@ header {
     }
 
 @media (max-width: 768px) {
+    /* ... другие мобильные стили ... */
 
-/* Мобильные стили для горизонтальной прокрутки слайдера */
-@media (max-width: 768px) {
+    /* Исправленные стили слайдера */
     .slider {
         height: auto;
         margin: 0 -20px; /* Растягиваем слайдер на всю ширину экрана */
         border-radius: 0;
         box-shadow: none;
-        overflow-x: auto; /* Добавляем горизонтальную прокрутку */
-        scroll-snap-type: x mandatory;
     }
 
     .slide {
         flex-direction: column;
         height: auto;
         background: var(--bg-light);
-        min-width: 100%; /* Обеспечивает горизонтальную прокрутку каждого слайда */
-        scroll-snap-align: start;
     }
 
     .slide img {
@@ -482,32 +467,9 @@ header {
     }
 
     .case-studies {
-        /* overflow: hidden; Убрать, чтобы разрешить горизонтальную прокрутку */
+        overflow: hidden; /* Предотвращаем горизонтальный скролл */
     }
 }
-
-/* Стрелки навигации для слайдера */
-.slider-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border: none;
-    font-size: 24px;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 2;
-}
-
-.left-arrow {
-    left: 10px;
-}
-
-.right-arrow {
-    right: 10px;
-}
-
 
     .team-photo {
         width: 150px;

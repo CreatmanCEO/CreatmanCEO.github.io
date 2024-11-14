@@ -42,8 +42,13 @@ class Slider {
         const slides = this.slider.querySelectorAll('.slide');
         slides.forEach(slide => slide.classList.remove('active'));
         
+        const currentActiveSlide = this.slider.querySelector('.slide.active');
+        if (currentActiveSlide) {
+            currentActiveSlide.style.zIndex = 1;
+        }
+        
         this.slider.insertAdjacentHTML('beforeend', this.createSlide(projects[index]));
-
+        
         setTimeout(() => {
             const newSlide = this.slider.querySelector('.slide:last-child');
             newSlide.classList.add('active');
@@ -57,32 +62,12 @@ class Slider {
         this.currentSlide = index;
     }
 
-    prevSlide() {
-        this.currentSlide = (this.currentSlide - 1 + projects.length) % projects.length;
-        this.showSlide(this.currentSlide);
-    }
-
-    nextSlide() {
-        this.currentSlide = (this.currentSlide + 1) % projects.length;
-        this.showSlide(this.currentSlide);
-    }
-
-    startAutoSlide() {
-        this.interval = setInterval(() => {
-            this.nextSlide();
-        }, 8000);
-    }
-
-    stopAutoSlide() {
-        clearInterval(this.interval);
-    }
-
     init() {
         this.showSlide(0);
-        this.startAutoSlide();
-
-        this.slider.addEventListener('mouseover', () => this.stopAutoSlide());
-        this.slider.addEventListener('mouseout', () => this.startAutoSlide());
+        this.interval = setInterval(() => {
+            this.currentSlide = (this.currentSlide + 1) % projects.length;
+            this.showSlide(this.currentSlide);
+        }, 8000);
     }
 }
 
