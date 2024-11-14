@@ -94,9 +94,6 @@ class Slider {
     }
 }
 
-const slider = new Slider();
-
-
 // Модальное окно
 class Modal {
     constructor() {
