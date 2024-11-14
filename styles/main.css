@@ -288,7 +288,7 @@ header {
 }
 
 .team-member:hover .team-photo img {
-    transform: scale(1.05);
+    transform: scale(1.20);
 }
 
 .team-role {
@@ -421,25 +421,55 @@ header {
         padding: 40px 0;
     }
 
+@media (max-width: 768px) {
+    /* ... другие мобильные стили ... */
+
+    /* Исправленные стили слайдера */
     .slider {
-        height: 450px;
-        margin-bottom: 20px;
+        height: auto;
+        margin: 0 -20px; /* Растягиваем слайдер на всю ширину экрана */
+        border-radius: 0;
+        box-shadow: none;
     }
 
     .slide {
-        height: 100%;
+        flex-direction: column;
+        height: auto;
+        background: var(--bg-light);
     }
 
     .slide img {
-        height: calc(100% - 120px);
+        position: relative;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/9;
+        object-fit: cover;
     }
 
     .slide-content {
-        height: 120px;
-        background: none;
-        backdrop-filter: none;
-        padding: 1rem 0;
+        position: relative;
+        background: var(--bg-light);
+        padding: 1rem 20px;
+        height: auto;
+        margin-top: 0;
     }
+
+    .slide-content h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+    }
+
+    .slide-content p {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        line-height: 1.5;
+    }
+
+    .case-studies {
+        overflow: hidden; /* Предотвращаем горизонтальный скролл */
+    }
+}
 
     .team-photo {
         width: 150px;
