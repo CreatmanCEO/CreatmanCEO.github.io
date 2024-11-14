@@ -198,11 +198,23 @@ header {
 /* Слайдер проектов */
 .slider {
     display: flex;
-    overflow-x: auto; /* Добавляем горизонтальную прокрутку */
+    overflow: hidden;
     scroll-snap-type: x mandatory;
-    gap: 20px; /* Расстояние между слайдами */
-    padding: 0; /* Убираем боковые отступы */
+    gap: 20px;
+    padding: 0;
     width: 100%;
+    position: relative;
+}
+
+.slider-info {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.slider-info h3,
+.slider-info p {
+    margin: 0;
+    padding: 0;
 }
 
 .slider-arrow {
@@ -227,15 +239,10 @@ header {
 }
 
 .slide {
-    scroll-snap-align: start;
     min-width: 100%;
     transition: transform 1s ease;
     position: relative;
     flex-shrink: 0;
-}
-
-.slide.active {
-    opacity: 1;
 }
 
 .slide img {
@@ -432,25 +439,21 @@ header {
         padding: 40px 0;
     }
 
-@media (max-width: 768px) {
-
-/* Мобильные стили для горизонтальной прокрутки слайдера */
-@media (max-width: 768px) {
     .slider {
         height: auto;
-        margin: 0 -20px; /* Растягиваем слайдер на всю ширину экрана */
+        margin: 0 -20px;
         border-radius: 0;
         box-shadow: none;
-        overflow-x: auto; /* Добавляем горизонтальную прокрутку */
+        overflow-x: auto;
         scroll-snap-type: x mandatory;
     }
 
     .slide {
         flex-direction: column;
+        min-width: 100%;
+        scroll-snap-align: start;
         height: auto;
         background: var(--bg-light);
-        min-width: 100%; /* Обеспечивает горизонтальную прокрутку каждого слайда */
-        scroll-snap-align: start;
     }
 
     .slide img {
@@ -461,53 +464,27 @@ header {
         object-fit: cover;
     }
 
-    .slide-content {
-        position: relative;
-        background: var(--bg-light);
-        padding: 1rem 20px;
-        height: auto;
-        margin-top: 0;
+    .slider-info {
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
-    .slide-content h3 {
+    .slide-content {
+        display: none;
+    }
+
+    .slide-title {
         font-size: 1.25rem;
         margin-bottom: 0.5rem;
         color: var(--text-primary);
     }
 
-    .slide-content p {
+    .slide-description {
         font-size: 0.9rem;
         color: var(--text-secondary);
         line-height: 1.5;
     }
-
-    .case-studies {
-        /* overflow: hidden; Убрать, чтобы разрешить горизонтальную прокрутку */
-    }
-}
-
-/* Стрелки навигации для слайдера */
-.slider-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border: none;
-    font-size: 24px;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 2;
-}
-
-.left-arrow {
-    left: 10px;
-}
-
-.right-arrow {
-    right: 10px;
-}
-
 
     .team-photo {
         width: 150px;

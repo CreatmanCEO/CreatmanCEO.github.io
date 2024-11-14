@@ -22,6 +22,8 @@ class Slider {
     constructor() {
         this.currentSlide = 0;
         this.slider = document.getElementById('projectSlider');
+        this.slideTitle = document.querySelector('.slide-title');
+        this.slideDescription = document.querySelector('.slide-description');
         this.interval = null;
         this.init();
     }
@@ -36,6 +38,11 @@ class Slider {
                 </div>
             </div>
         `;
+    }
+
+    updateSlideInfo(index) {
+        this.slideTitle.textContent = projects[index].title;
+        this.slideDescription.textContent = projects[index].description;
     }
 
     showSlide(index) {
@@ -54,6 +61,7 @@ class Slider {
             }, 1000);
         }, 50);
 
+        this.updateSlideInfo(index);
         this.currentSlide = index;
     }
 
@@ -85,6 +93,9 @@ class Slider {
         this.slider.addEventListener('mouseout', () => this.startAutoSlide());
     }
 }
+
+const slider = new Slider();
+
 
 // Модальное окно
 class Modal {
