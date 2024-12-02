@@ -1,119 +1,3 @@
-// Конфигурация проектов
-const projects = [
-    {
-        title: "Мобильное приложение Сахалин-Маркет",
-        description: "Кроссплатформенное мобильное приложение для заказа еды и товаров в г. Южно-Сахалинск.",
-        image: "/images/sakh-mob.webp"
-    },
-    {
-        title: "Web-приложение Сахалин-Маркет",
-        description: "Создание масштабируемой платформы для агрегатора доставки еды и товаров, включающее в себя веб-сайт и админ панели для сервиса и заведений.",
-        image: "/images/sakh-web.webp"
-    },
-    {
-        title: "Web-Приложение СпортХаб",
-        description: "Полноценная платформа для создания любительских футбольных команд и проведения соревнований и тренировок.",
-        image: "/images/sporthub.webp"
-    }
-];
-
-// Слайдер
-class Slider {
-    constructor() {
-        this.currentSlide = 0;
-        this.slider = document.getElementById('projectSlider');
-        this.interval = null;
-        this.init();
-    }
-
-    createSlide(project) {
-        return `
-            <div class="slide">
-                <img src="${project.image}" alt="${project.title}" onclick="modal.open('${project.image}')">
-                <div class="slide-content">
-                    <h3>${project.title}</h3>
-                    <p>${project.description}</p>
-                </div>
-            </div>
-        `;
-    }
-
-    showSlide(index) {
-        const slides = this.slider.querySelectorAll('.slide');
-        slides.forEach(slide => slide.classList.remove('active'));
-        
-        const currentActiveSlide = this.slider.querySelector('.slide.active');
-        if (currentActiveSlide) {
-            currentActiveSlide.style.zIndex = 1;
-        }
-        
-        this.slider.insertAdjacentHTML('beforeend', this.createSlide(projects[index]));
-        
-        setTimeout(() => {
-            const newSlide = this.slider.querySelector('.slide:last-child');
-            newSlide.classList.add('active');
-            
-            setTimeout(() => {
-                const oldSlides = this.slider.querySelectorAll('.slide:not(.active)');
-                oldSlides.forEach(slide => slide.remove());
-            }, 1000);
-        }, 50);
-
-        this.currentSlide = index;
-    }
-
-    init() {
-        this.showSlide(0);
-        this.interval = setInterval(() => {
-            this.currentSlide = (this.currentSlide + 1) % projects.length;
-            this.showSlide(this.currentSlide);
-        }, 8000);
-    }
-}
-
-// Модальное окно
-class Modal {
-    constructor() {
-        this.modal = document.getElementById('fullscreenModal');
-        this.modalImg = document.getElementById('modalImage');
-        this.closeBtn = document.getElementsByClassName('close-modal')[0];
-        this.init();
-    }
-
-    open(imgSrc) {
-        this.modal.style.display = "block";
-        this.modalImg.src = imgSrc;
-        document.body.style.overflow = 'hidden';
-    }
-
-    close() {
-        this.modal.style.display = "none";
-        document.body.style.overflow = '';
-    }
-
-    init() {
-        this.closeBtn.onclick = () => this.close();
-        this.modal.onclick = (e) => {
-            if (e.target === this.modal) this.close();
-        };
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') this.close();
-        });
-
-        // Обработка свайпов на мобильных
-        let touchStartY = 0;
-        this.modal.addEventListener('touchstart', (e) => {
-            touchStartY = e.changedTouches[0].screenY;
-        }, false);
-
-        this.modal.addEventListener('touchend', (e) => {
-            const touchEndY = e.changedTouches[0].screenY;
-            const swipeDistance = Math.abs(touchEndY - touchStartY);
-            if (swipeDistance > 100) this.close();
-        }, false);
-    }
-}
-
 // Мобильное меню
 class MobileMenu {
     constructor() {
@@ -143,7 +27,70 @@ class MobileMenu {
     }
 }
 
-// Форма обратной связи
+// Плавная прокрутка к секциям
+class SmoothScroll {
+    constructor() {
+        this.links = document.querySelectorAll('a[href^="#"]');
+        this.init();
+    }
+
+    scrollToElement(element) {
+        const headerOffset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+    }
+
+    init() {
+        this.links.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    this.scrollToElement(targetElement);
+                }
+            });
+        });
+    }
+}
+
+// Анимация появления элементов при скролле
+class ScrollAnimation {
+    constructor() {
+        this.elements = document.querySelectorAll('.service-category, .advantages-block');
+        this.init();
+    }
+
+    isElementInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.bottom >= 0
+        );
+    }
+
+    handleScroll() {
+        this.elements.forEach(element => {
+            if (this.isElementInViewport(element)) {
+                element.classList.add('animated');
+            }
+        });
+    }
+
+    init() {
+        this.handleScroll();
+        window.addEventListener('scroll', () => this.handleScroll());
+    }
+}
+
+// Форма обратной связи (оригинальная версия)
 class ContactForm {
     constructor() {
         this.form = document.getElementById('contactForm');
@@ -193,8 +140,53 @@ class ContactForm {
     }
 }
 
+// Модальное окно (оригинальная версия)
+class Modal {
+    constructor() {
+        this.modal = document.getElementById('fullscreenModal');
+        this.modalImg = document.getElementById('modalImage');
+        this.closeBtn = document.getElementsByClassName('close-modal')[0];
+        this.init();
+    }
+
+    open(imgSrc) {
+        this.modal.style.display = "block";
+        this.modalImg.src = imgSrc;
+        document.body.style.overflow = 'hidden';
+    }
+
+    close() {
+        this.modal.style.display = "none";
+        document.body.style.overflow = '';
+    }
+
+    init() {
+        this.closeBtn.onclick = () => this.close();
+        this.modal.onclick = (e) => {
+            if (e.target === this.modal) this.close();
+        };
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') this.close();
+        });
+
+        let touchStartY = 0;
+        this.modal.addEventListener('touchstart', (e) => {
+            touchStartY = e.changedTouches[0].screenY;
+        }, false);
+
+        this.modal.addEventListener('touchend', (e) => {
+            const touchEndY = e.changedTouches[0].screenY;
+            const swipeDistance = Math.abs(touchEndY - touchStartY);
+            if (swipeDistance > 100) this.close();
+        }, false);
+    }
+}
+
 // Инициализация всех компонентов
-const slider = new Slider();
-const modal = new Modal();
-const mobileMenu = new MobileMenu();
-const contactForm = new ContactForm();
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenu = new MobileMenu();
+    const smoothScroll = new SmoothScroll();
+    const scrollAnimation = new ScrollAnimation();
+    const contactForm = new ContactForm();
+    const modal = new Modal();
+});

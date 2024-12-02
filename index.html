@@ -3,120 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CREATMAN | Воплощаем ваши идеи в цифровой реальности</title>
-    <meta name="description" content="Разработка мобильных приложений на Flutter и React, создание веб-приложений и сайтов. Индивидуальный подход к каждому проекту.">
+    <title>Персональный IT-помощник в Поварово</title>
+    <meta name="description" content="Профессиональная настройка компьютеров, обучение работе с ChatGPT, автоматизация бизнес-процессов, создание сайтов. Выезд на дом в Поварово">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="styles/main.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Мобильное меню -->
-    <div class="mobile-menu">
-        <div class="menu-content">
-            <a href="/" class="menu-link">Главная</a>
-            <a href="/portfolio.html" class="menu-link">Портфолио</a>
-            <a href="/blog.html" class="menu-link">Блог</a>
-            <a href="#contact" class="menu-link">Связаться</a>
+<!-- Мобильное меню -->
+<div class="mobile-menu">
+    <div class="menu-content">
+        <a href="#hero" class="menu-link">Главная</a>
+        <a href="#services" class="menu-link">Услуги</a>
+        <a href="#advantages" class="menu-link">Преимущества</a>
+        <a href="#contact" class="menu-link">Связаться</a>
+    </div>
+</div>
+
+<!-- Шапка сайта -->
+<header>
+    <div class="container header-content">
+        <a href="/" class="logo">IT-Помощник в Поварово</a>
+        <nav class="nav-links">
+            <a href="#hero">Главная</a>
+            <a href="#services">Услуги</a>
+            <a href="#advantages">Преимущества</a>
+            <a href="#contact">Связаться</a>
+        </nav>
+        <button class="burger-button">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
+
+<!-- Главный баннер -->
+<section id="hero" class="section hero">
+    <div class="container hero-content">
+        <h1>ПЕРСОНАЛЬНЫЙ IT-АССИСТЕНТ</h1>
+        <p class="hero-subtitle">Ваш надёжный помощник в мире современных технологий</p>
+        <div class="hero-features">
+            <p><span class="emoji">🔹</span> Решаю любые проблемы с компьютерами и ноутбуками!</p>
+            <p><span class="emoji">🔹</span> Помогаю частным лицам и бизнесу эффективно использовать современные технологии</p>
+            <p><span class="emoji">🔹</span> Специализируюсь на внедрении ИИ-инструментов и автоматизации процессов</p>
+            <p><span class="emoji">🔹</span> Индивидуальный подход к каждому клиенту</p>
+        </div>
+        <a href="#contact" class="submit-btn">Получить бесплатную консультацию</a>
+    </div>
+</section>
+
+<!-- Секция услуг -->
+<section id="services" class="section services">
+    <div class="container">
+        <h2 class="section-title">Услуги</h2>
+        <div class="services-grid">
+            <!-- Для частных лиц -->
+            <div class="service-category">
+                <h3 class="category-title">Для частных лиц</h3>
+                <ul class="service-list">
+                    <li>Настройка и мелкий ремонт компьютеров и ноутбуков</li>
+                    <li>Установка Windows и любых программ</li>
+                    <li>Удаление вирусов, настройка антивируса</li>
+                    <li>Настройка родительского контроля и безопасности детей в интернете</li>
+                    <li>Оптимизация работы компьютеров для пожилых людей</li>
+                    <li>Консультации по кибербезопасности</li>
+                    <li>Спасение данных, настройка резервного копирования</li>
+                    <li>Обучение работе с компьютером и программами</li>
+                    <li>Настройка умных устройств и видеонаблюдения</li>
+                    <li>Помощь с Госуслугами и интернет-покупками</li>
+                </ul>
+            </div>
+            <!-- Для бизнеса -->
+            <div class="service-category">
+                <h3 class="category-title">Для бизнеса</h3>
+                <div class="business-services">
+                    <div class="service-block">
+                        <h4>ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ И АВТОМАТИЗАЦИЯ</h4>
+                        <ul class="service-list">
+                            <li>Настройка ChatGPT под ваши задачи</li>
+                            <li>Обучение эффективной работе с ИИ-помощниками</li>
+                            <li>Автоматизация рутинных процессов</li>
+                        </ul>
+                    </div>
+                    <div class="service-block">
+                        <h4>ЦИФРОВЫЕ СЕРВИСЫ</h4>
+                        <ul class="service-list">
+                            <li>Помощь с оплатой зарубежных сервисов</li>
+                            <li>Настройка облачных хранилищ</li>
+                            <li>Регистрация на международных площадках</li>
+                        </ul>
+                    </div>
+                    <div class="service-block">
+                        <h4>РАЗРАБОТКА И ПРОДВИЖЕНИЕ</h4>
+                        <ul class="service-list">
+                            <li>Создание современных сайтов для бизнеса</li>
+                            <li>Создание интернет-магазинов, приложений</li>
+                            <li>Создание чат-ботов в Телеграм</li>
+                            <li>Продвижение в социальных сетях</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</section>
 
-    <button class="burger-button">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-
-    <!-- Шапка -->
-    <header>
-        <div class="container header-content">
-            <a href="/" class="logo">CREATMAN</a>
-            <nav class="nav-links">
-                <a href="/">Главная</a>
-                <a href="/portfolio.html">Портфолио</a>
-                <a href="/blog.html">Блог</a>
-                <a href="#contact">Связаться</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Главный баннер -->
-    <section class="hero">
-        <div class="container hero-content">
-            <h1>Воплощаем ваши идеи<br>в цифровой реальности</h1>
-            <p>Мы создаем удобные для пользователя, интуитивно понятные и визуально привлекательные приложения.</p>
-            <a href="#contact" class="submit-btn">Обсудить проект</a>
-        </div>
-    </section>
-
-    <!-- Проекты -->
-    <section class="case-studies">
-        <div class="container">
-            <h2 class="section-title">Наши проекты</h2>
-            <p class="section-subtitle">Примеры успешно реализованных решений</p>
-            <div id="projectSlider" class="slider">
-                <!-- Слайды добавляются через JavaScript -->
+<!-- Преимущества -->
+<section id="advantages" class="section advantages">
+    <div class="container">
+        <div class="advantages-grid">
+            <div class="advantages-block">
+                <h3>Почему выбирают меня</h3>
+                <ul class="advantages-list">
+                    <li>Современный подход к решению задач</li>
+                    <li>Опыт работы с международными сервисами</li>
+                    <li>Доступное объяснение сложных вещей</li>
+                    <li>Гарантия конфиденциальности</li>
+                    <li>Поддержка после выполнения работ</li>
+                </ul>
+            </div>
+            <div class="advantages-block">
+                <h3>Акции</h3>
+                <ul class="advantages-list promotion">
+                    <li>Бесплатный аудит ваших цифровых процессов!</li>
+                    <li>Пенсионерам скидка от 10%</li>
+                    <li>Скидки на пакетные предложения услуг</li>
+                    <li>Возможность абонементного обслуживания для бизнеса</li>
+                </ul>
             </div>
         </div>
-    </section>
-
-    <!-- Команда -->
-    <section class="team">
-        <div class="container">
-            <h2 class="section-title">Наша команда</h2>
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="team-photo">
-                        <img src="images/nikolay.png" alt="Николай" onerror="this.src='/api/placeholder/300/300'">
-                    </div>
-                    <h3>Николай</h3>
-                    <p class="team-role">Сооснователь</p>
-                    <p>Отвечает за проектирование архитектуры приложений, прототипирование, дизайн, frontend и частично backend.</p>
-                </div>
-                <div class="team-member">
-                    <div class="team-photo">
-                        <img src="images/eugene.png" alt="Евгений" onerror="this.src='/api/placeholder/300/300'">
-                    </div>
-                    <h3>Евгений</h3>
-                    <p class="team-role">Сооснователь</p>
-                    <p>Занимается настройкой backend и frontend, организацией баз данных, интеграцией с внешними сервисами.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Форма связи -->
-    <section id="contact" class="contact-form">
-        <div class="container">
-            <h2 class="section-title">Обсудить проект</h2>
-            <div class="form-container">
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Ваше имя</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Телефон</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Описание проекта</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Отправить заявку</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Модальное окно для изображений -->
-    <div id="fullscreenModal" class="modal">
-        <span class="close-modal">&times;</span>
-        <img id="modalImage" src="" alt="">
     </div>
+</section>
 
-    <script src="js/main.js"></script>
+<!-- Форма обратной связи -->
+<section id="contact" class="section contact-form">
+    <div class="container">
+        <h2 class="section-title">Запишитесь на бесплатную консультацию</h2>
+        <div class="form-container">
+            <form id="contactForm">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Ваше имя" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phone" placeholder="Телефон" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" placeholder="Опишите вашу задачу" rows="4"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Получить консультацию</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Модальное окно -->
+<div id="fullscreenModal" class="modal">
+    <span class="close-modal">×</span>
+    <img id="modalImage" src="" alt="Увеличенное изображение">
+</div>
 </body>
 </html>
