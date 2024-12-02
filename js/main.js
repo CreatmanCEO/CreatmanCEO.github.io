@@ -4,25 +4,75 @@ class MobileMenu {
         this.burgerButton = document.querySelector('.burger-button');
         this.mobileMenu = document.querySelector('.mobile-menu');
         this.menuLinks = document.querySelectorAll('.menu-link');
+        this.isOpen = false;
         this.init();
     }
 
     toggle() {
+        this.isOpen = !this.isOpen;
         this.burgerButton.classList.toggle('active');
         this.mobileMenu.classList.toggle('active');
-        document.body.style.overflow = this.mobileMenu.classList.contains('active') ? 'hidden' : '';
+        document.body.style.overflow = this.isOpen ? 'hidden' : '';
     }
 
     close() {
+        this.isOpen = false;
         this.burgerButton.classList.remove('active');
         this.mobileMenu.classList.remove('active');
         document.body.style.overflow = '';
     }
 
     init() {
-        this.burgerButton.addEventListener('click', () => this.toggle());
+        this.burgerButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.toggle();
+        });
+
         this.menuLinks.forEach(link => {
             link.addEventListener('click', () => this.close());
+        });
+
+        // Закрытие при клике вне меню
+        document.addEventListener('click', (e) => {
+            if (this.isOpen && !this.mobileMenu.contains(e.target) && !this.burgerButton.contains(e.target)) {
+                this.close();
+            }
+        });
+
+        // Предотвращение закрытия при клике внутри меню
+        this.mobileMenu.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    }
+}
+
+// Анимация появления элементов при скролле
+class ScrollAnimation {
+    constructor() {
+        this.elements = document.querySelectorAll('.service-category, .advantages-block');
+        this.init();
+    }
+
+    isElementInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.bottom >= 0
+        );
+    }
+
+    handleScroll() {
+        this.elements.forEach(element => {
+            if (this.isElementInViewport(element)) {
+                element.classList.add('animated');
+            }
+        });
+    }
+
+    init() {
+        this.handleScroll();
+        window.addEventListener('scroll', () => {
+            requestAnimationFrame(() => this.handleScroll());
         });
     }
 }
@@ -61,86 +111,7 @@ class SmoothScroll {
     }
 }
 
-// Анимация появления элементов при скролле
-class ScrollAnimation {
-    constructor() {
-        this.elements = document.querySelectorAll('.service-category, .advantages-block');
-        this.init();
-    }
-
-    isElementInViewport(element) {
-        const rect = element.getBoundingClientRect();
-        return (
-            rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.bottom >= 0
-        );
-    }
-
-    handleScroll() {
-        this.elements.forEach(element => {
-            if (this.isElementInViewport(element)) {
-                element.classList.add('animated');
-            }
-        });
-    }
-
-    init() {
-        this.handleScroll();
-        window.addEventListener('scroll', () => this.handleScroll());
-    }
-}
-
-// Форма обратной связи (оригинальная версия)
-class ContactForm {
-    constructor() {
-        this.form = document.getElementById('contactForm');
-        this.init();
-    }
-
-    async handleSubmit(e) {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const data = {
-            name: formData.get('name'),
-            email: formData.get('email'),
-            phone: formData.get('phone'),
-            message: formData.get('message')
-        };
-
-        const submitButton = e.target.querySelector('button[type="submit"]');
-        try {
-            submitButton.disabled = true;
-            submitButton.textContent = 'Отправка...';
-
-            const response = await fetch('https://telegram-form.creatmanick-850.workers.dev', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            });
-
-            if (!response.ok) {
-                throw new Error('Ошибка отправки формы');
-            }
-
-            alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
-            e.target.reset();
-        } catch (error) {
-            console.error('Ошибка:', error);
-            alert('Произошла ошибка при отправке формы. Пожалуйста, попробуйте позже.');
-        } finally {
-            submitButton.disabled = false;
-            submitButton.textContent = 'Отправить заявку';
-        }
-    }
-
-    init() {
-        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
-    }
-}
-
-// Модальное окно (оригинальная версия)
+// Модальное окно
 class Modal {
     constructor() {
         this.modal = document.getElementById('fullscreenModal');
@@ -182,11 +153,84 @@ class Modal {
     }
 }
 
+// Форма обратной связи
+class ContactForm {
+    constructor() {
+        this.form = document.getElementById('contactForm');
+        this.init();
+    }
+
+    async handleSubmit(e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const data = {
+            name: formData.get('name'),
+            phone: formData.get('phone'),
+            message: formData.get('message')
+        };
+
+        const submitButton = e.target.querySelector('button[type="submit"]');
+        try {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Отправка...';
+
+            const response = await fetch('https://telegram-form.creatmanick-850.workers.dev', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (!response.ok) {
+                throw new Error('Ошибка отправки формы');
+            }
+
+            alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
+            e.target.reset();
+        } catch (error) {
+            console.error('Ошибка:', error);
+            alert('Произошла ошибка при отправке формы. Пожалуйста, попробуйте позже.');
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Получить консультацию';
+        }
+    }
+
+    init() {
+        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+        
+        // Маска для телефона
+        const phoneInput = this.form.querySelector('input[name="phone"]');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 0) {
+                    value = '+7' + value.substring(1);
+                    if (value.length > 2) {
+                        value = value.slice(0, 2) + ' (' + value.slice(2);
+                    }
+                    if (value.length > 7) {
+                        value = value.slice(0, 7) + ') ' + value.slice(7);
+                    }
+                    if (value.length > 12) {
+                        value = value.slice(0, 12) + '-' + value.slice(12);
+                    }
+                    if (value.length > 15) {
+                        value = value.slice(0, 15) + '-' + value.slice(15);
+                    }
+                }
+                e.target.value = value.slice(0, 18);
+            });
+        }
+    }
+}
+
 // Инициализация всех компонентов
 document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = new MobileMenu();
     const smoothScroll = new SmoothScroll();
     const scrollAnimation = new ScrollAnimation();
-    const contactForm = new ContactForm();
     const modal = new Modal();
+    const contactForm = new ContactForm();
 });
