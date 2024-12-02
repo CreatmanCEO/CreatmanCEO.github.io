@@ -3,6 +3,7 @@ class MobileMenu {
     constructor() {
         this.burgerButton = document.querySelector('.burger-button');
         this.mobileMenu = document.querySelector('.mobile-menu');
+        this.closeButton = document.querySelector('.close-menu');
         this.menuLinks = document.querySelectorAll('.menu-link');
         this.isOpen = false;
         this.init();
@@ -28,6 +29,10 @@ class MobileMenu {
             this.toggle();
         });
 
+        this.closeButton.addEventListener('click', () => {
+            this.close();
+        });
+
         this.menuLinks.forEach(link => {
             link.addEventListener('click', () => this.close());
         });
@@ -42,37 +47,6 @@ class MobileMenu {
         // Предотвращение закрытия при клике внутри меню
         this.mobileMenu.addEventListener('click', (e) => {
             e.stopPropagation();
-        });
-    }
-}
-
-// Анимация появления элементов при скролле
-class ScrollAnimation {
-    constructor() {
-        this.elements = document.querySelectorAll('.service-category, .advantages-block');
-        this.init();
-    }
-
-    isElementInViewport(element) {
-        const rect = element.getBoundingClientRect();
-        return (
-            rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.bottom >= 0
-        );
-    }
-
-    handleScroll() {
-        this.elements.forEach(element => {
-            if (this.isElementInViewport(element)) {
-                element.classList.add('animated');
-            }
-        });
-    }
-
-    init() {
-        this.handleScroll();
-        window.addEventListener('scroll', () => {
-            requestAnimationFrame(() => this.handleScroll());
         });
     }
 }
@@ -108,48 +82,6 @@ class SmoothScroll {
                 }
             });
         });
-    }
-}
-
-// Модальное окно
-class Modal {
-    constructor() {
-        this.modal = document.getElementById('fullscreenModal');
-        this.modalImg = document.getElementById('modalImage');
-        this.closeBtn = document.getElementsByClassName('close-modal')[0];
-        this.init();
-    }
-
-    open(imgSrc) {
-        this.modal.style.display = "block";
-        this.modalImg.src = imgSrc;
-        document.body.style.overflow = 'hidden';
-    }
-
-    close() {
-        this.modal.style.display = "none";
-        document.body.style.overflow = '';
-    }
-
-    init() {
-        this.closeBtn.onclick = () => this.close();
-        this.modal.onclick = (e) => {
-            if (e.target === this.modal) this.close();
-        };
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') this.close();
-        });
-
-        let touchStartY = 0;
-        this.modal.addEventListener('touchstart', (e) => {
-            touchStartY = e.changedTouches[0].screenY;
-        }, false);
-
-        this.modal.addEventListener('touchend', (e) => {
-            const touchEndY = e.changedTouches[0].screenY;
-            const swipeDistance = Math.abs(touchEndY - touchStartY);
-            if (swipeDistance > 100) this.close();
-        }, false);
     }
 }
 
@@ -199,7 +131,7 @@ class ContactForm {
 
     init() {
         this.form.addEventListener('submit', (e) => this.handleSubmit(e));
-        
+
         // Маска для телефона
         const phoneInput = this.form.querySelector('input[name="phone"]');
         if (phoneInput) {
@@ -226,11 +158,52 @@ class ContactForm {
     }
 }
 
+// Модальное окно
+class Modal {
+    constructor() {
+        this.modal = document.getElementById('fullscreenModal');
+        this.modalImg = document.getElementById('modalImage');
+        this.closeBtn = document.getElementsByClassName('close-modal')[0];
+        this.init();
+    }
+
+    open(imgSrc) {
+        this.modal.style.display = "block";
+        this.modalImg.src = imgSrc;
+        document.body.style.overflow = 'hidden';
+    }
+
+    close() {
+        this.modal.style.display = "none";
+        document.body.style.overflow = '';
+    }
+
+    init() {
+        this.closeBtn.onclick = () => this.close();
+        this.modal.onclick = (e) => {
+            if (e.target === this.modal) this.close();
+        };
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') this.close();
+        });
+
+        let touchStartY = 0;
+        this.modal.addEventListener('touchstart', (e) => {
+            touchStartY = e.changedTouches[0].screenY;
+        }, false);
+
+        this.modal.addEventListener('touchend', (e) => {
+            const touchEndY = e.changedTouches[0].screenY;
+            const swipeDistance = Math.abs(touchEndY - touchStartY);
+            if (swipeDistance > 100) this.close();
+        }, false);
+    }
+}
+
 // Инициализация всех компонентов
 document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = new MobileMenu();
     const smoothScroll = new SmoothScroll();
-    const scrollAnimation = new ScrollAnimation();
-    const modal = new Modal();
     const contactForm = new ContactForm();
+    const modal = new Modal();
 });

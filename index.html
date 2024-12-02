@@ -5,19 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IT-Помощь в Поварово</title>
     <meta name="description" content="Профессиональная настройка компьютеров, обучение работе с ChatGPT, автоматизация бизнес-процессов, создание сайтов. Выезд на дом в Поварово">
-
     <link href="styles/main.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Добавляем иконки -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- Мобильное меню -->
     <div class="mobile-menu">
+        <button class="close-menu">
+            <span></span>
+            <span></span>
+        </button>
         <div class="menu-content">
             <a href="#hero" class="menu-link">Главная</a>
             <a href="#services" class="menu-link">Услуги</a>
             <a href="#digital-services" class="menu-link">ИИ и сервисы</a>
             <a href="#advantages" class="menu-link">Преимущества</a>
             <a href="#contact" class="menu-link">Связаться</a>
+            
+            <div class="mobile-social">
+                <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+            </div>
         </div>
     </div>
 
@@ -32,6 +42,10 @@
                 <a href="#advantages">Преимущества</a>
                 <a href="#contact">Связаться</a>
             </nav>
+            <div class="header-social">
+                <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+            </div>
             <button class="burger-button">
                 <span></span>
                 <span></span>
@@ -51,7 +65,9 @@
                 <p><span class="emoji">🔹</span> Специализируюсь на внедрении ИИ-инструментов и автоматизации процессов</p>
                 <p><span class="emoji">🔹</span> Индивидуальный подход к каждому клиенту</p>
             </div>
-            <a href="#contact" class="submit-btn">Получить бесплатную консультацию</a>
+            <div class="text-center">
+                <a href="#contact" class="submit-btn">Получить бесплатную консультацию</a>
+            </div>
         </div>
     </section>
 
@@ -175,7 +191,7 @@
         </div>
     </section>
 
-    <!-- Форма обратной связи -->
+<!-- Форма обратной связи -->
     <section id="contact" class="section contact-form">
         <div class="container">
             <h2 class="section-title">Запишитесь на бесплатную консультацию</h2>
@@ -190,7 +206,9 @@
                     <div class="form-group">
                         <textarea name="message" placeholder="Опишите вашу задачу" rows="4"></textarea>
                     </div>
-                    <button type="submit" class="submit-btn">Получить консультацию</button>
+                    <div class="text-center">
+                        <button type="submit" class="submit-btn">Получить консультацию</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -205,3 +223,4 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+    

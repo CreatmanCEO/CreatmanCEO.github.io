@@ -39,6 +39,10 @@ body {
     padding: 0 20px;
 }
 
+.text-center {
+    text-align: center;
+}
+
 /* Стили для шапки */
 header {
     position: fixed;
@@ -67,10 +71,6 @@ header {
     background-clip: text;
     color: transparent;
     transition: opacity 0.3s ease;
-}
-
-.logo:hover {
-    opacity: 0.9;
 }
 
 .nav-links {
@@ -104,6 +104,151 @@ header {
 
 .nav-links a:hover::after {
     width: 100%;
+}
+
+/* Социальные иконки */
+.header-social {
+    display: none;
+    gap: 1rem;
+    margin-right: 4rem;
+}
+
+.social-link {
+    color: var(--primary);
+    font-size: 20px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    color: var(--secondary);
+}
+
+/* Мобильное меню */
+.burger-button {
+    display: none;
+    position: fixed;
+    right: 1rem;
+    top: 1.2rem;
+    z-index: 1002;
+    width: 40px;
+    height: 40px;
+    background: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 8px;
+    box-shadow: var(--shadow-md);
+}
+
+.burger-button span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--primary);
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+.burger-button.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burger-button.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-button.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background: white;
+    z-index: 1001;
+    transition: right 0.3s ease;
+}
+
+.mobile-menu.active {
+    right: 0;
+}
+
+.close-menu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1002;
+}
+
+.close-menu span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--primary);
+    position: absolute;
+    left: 8px;
+    top: 50%;
+}
+
+.close-menu span:first-child {
+    transform: rotate(45deg);
+}
+
+.close-menu span:last-child {
+    transform: rotate(-45deg);
+}
+
+.menu-content {
+    height: 100%;
+    padding: 80px 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.menu-link {
+    font-size: 20px;
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.menu-link:hover {
+    background: var(--bg-light);
+    color: var(--primary);
+}
+
+.mobile-social {
+    margin-top: auto;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.mobile-social .social-link {
+    font-size: 24px;
+    padding: 1rem;
+    background: var(--bg-light);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-sm);
 }
 
 /* Главный баннер */
@@ -364,79 +509,43 @@ header {
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
-/* Мобильное меню */
-.burger-button {
+/* Модальное окно */
+.modal {
     display: none;
     position: fixed;
-    right: 1rem;
-    top: 1rem;
-    z-index: 1002;
-    width: 40px;
-    height: 40px;
-    background: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    padding: 8px;
-    box-shadow: var(--shadow-md);
-}
-
-.burger-button span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background: var(--primary);
-    margin: 5px 0;
-    transition: 0.3s;
-}
-
-.burger-button.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.burger-button.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.burger-button.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-}
-
-.mobile-menu {
-    display: none;
-    position: fixed;
+    z-index: 9999;
     top: 0;
-    right: -100%;
+    left: 0;
     width: 100%;
-    height: 100vh;
-    background: white;
-    z-index: 1001;
-    transition: right 0.3s ease;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    overflow: hidden;
 }
 
-.mobile-menu.active {
-    right: 0;
+.modal img {
+    margin: auto;
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100vh;
+    object-fit: contain;
+    padding: 20px;
 }
 
-.menu-content {
-    padding: 80px 2rem 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+.close-modal {
+    position: absolute;
+    right: 25px;
+    top: 15px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10000;
 }
 
-.menu-link {
-    font-size: 20px;
-    color: var(--text-primary);
-    text-decoration: none;
-    padding: 1rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-}
-
-.menu-link:hover {
-    background: var(--bg-light);
-    color: var(--primary);
+.close-modal:hover {
+    color: #bbb;
 }
 
 /* Анимации */
@@ -449,29 +558,38 @@ header {
 
 /* Медиа-запросы */
 @media (max-width: 768px) {
-    .burger-button {
-        display: block;
+    .container {
+        padding: 0 15px;
+    }
+
+    .header-content {
+        justify-content: space-between;
+        padding: 0.75rem 15px;
+    }
+
+    .logo {
+        font-size: 18px;
+        margin-left: 15px;
     }
 
     .nav-links {
         display: none;
     }
 
+    .header-social {
+        display: flex;
+    }
+
+    .burger-button {
+        display: block;
+    }
+
     .mobile-menu {
         display: block;
     }
 
-    .header-content {
-        justify-content: center;
-    }
-
-    .logo {
-        font-size: 18px;
-        margin-right: 3rem;
-    }
-
     .hero {
-        padding: 120px 0 60px;
+        padding-top: 100px;
     }
 
     .hero h1 {
@@ -497,18 +615,39 @@ header {
     .services-grid {
         grid-template-columns: 1fr;
     }
+
+    .submit-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (min-width: 769px) {
+    .header-social {
+        display: none;
+    }
+
+    .submit-btn {
+        margin: 0 auto;
+        display: inline-block;
+    }
+
+    .text-center .submit-btn {
+        display: inline-block;
+        width: auto;
+    }
 }
 
 @media (max-width: 480px) {
-    .container {
-        padding: 0 15px;
-    }
-
     .hero h1 {
         font-size: 28px;
     }
 
     .service-category {
         padding: 1.5rem;
+    }
+
+    .container {
+        padding: 0 15px;
     }
 }
