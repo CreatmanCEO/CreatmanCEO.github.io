@@ -174,6 +174,7 @@ header {
     background: var(--bg-light);
     z-index: 1001;
     transition: right 0.3s ease;
+    overflow-y: auto; /* добавляем скролл если контент не помещается */	
 }
 
 .mobile-menu.active {
@@ -212,21 +213,21 @@ header {
 
 .menu-content {
     height: 100%;
-    padding: 80px 20px 20px;
+    padding: 70px 20px 20px;
     display: flex;
     background: linear-gradient(135deg, #fff 0%, #f8fafc 100%);
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 0.8rem;
 }
 
 .menu-link {
-    font-size: 20px;
+    font-size: 18px;
     color: var(--text-primary);
-    padding: 15px 20px;
+    padding: 10px 16px;
     border-radius: 12px;
     background: white;
     box-shadow: var(--shadow-sm);
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     position: relative;
     border: 1px solid rgba(0, 0, 0, 0.05);
 }
