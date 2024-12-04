@@ -232,14 +232,7 @@ header {
 }
 
 .menu-link:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--primary), transparent);
-    opacity: 0.2;
+    display: none;
 }
 
 .menu-link:hover {
@@ -250,12 +243,11 @@ header {
 }
 
 .mobile-social {
-    margin-top: 30px;
-    padding: 20px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: auto;
+    padding: 2rem;
 }
 
 .mobile-social .social-link {
@@ -276,6 +268,7 @@ header {
 /* Главный баннер */
 .hero {
     position: relative;
+    margin-top: 60px;  /* Отступ для фиксированной шапки */	
     padding-top: 80px; /* Увеличиваем отступ сверху */
     padding: 160px 0 100px;
     background: linear-gradient(135deg, #fff 0%, #f1f5f9 100%);
@@ -477,6 +470,60 @@ header {
     content: "🎁";
 }
 
+/* Цены */
+.prices {
+    background: var(--bg-section);
+}
+
+.prices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 2rem;
+}
+
+.price-card {
+    background: var(--gradient-card);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.price-card h3 {
+    color: var(--primary);
+    font-size: 24px;
+    margin-bottom: 1.5rem;
+}
+
+.price-list {
+    list-style: none;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+}
+
+.price-list li {
+    margin-bottom: 1rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.price-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+}
+
+.price-amount {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
 /* Форма обратной связи */
 .contact-form {
     background: var(--bg-section);
@@ -619,6 +666,7 @@ header {
 
     .hero {
         padding-top: 100px;
+	    margin-top: 60px;  /* Отступ для фиксированной шапки */
     }
 
     .hero h1 {
@@ -644,6 +692,11 @@ header {
     .services-grid {
         grid-template-columns: 1fr;
     }
+	
+    .prices-grid {
+        grid-template-columns: 1fr;
+    }
+}	
 
     .submit-btn {
         width: 100%;
@@ -655,7 +708,7 @@ header {
     .header-social {
         display: flex;
         gap: 15px;
-        margin-left: 20px;
+        margin-left: auto;
     }
 
     .submit-btn {
