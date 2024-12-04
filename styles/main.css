@@ -276,6 +276,7 @@ header {
 /* Главный баннер */
 .hero {
     position: relative;
+    padding-top: 80px; /* Увеличиваем отступ сверху */
     padding: 160px 0 100px;
     background: linear-gradient(135deg, #fff 0%, #f1f5f9 100%);
     overflow: hidden;
@@ -585,8 +586,11 @@ header {
     }
 
     .header-content {
+        display: flex;
         justify-content: space-between;
+        align-items: center;
         padding: 0.75rem 20px;
+        gap: 15px;
     }
 
     .logo {
@@ -600,6 +604,9 @@ header {
 
     .header-social {
         display: flex;
+        gap: 10px;
+        margin-right: 0;
+        margin-left: auto;
     }
 
     .burger-button {
@@ -646,7 +653,9 @@ header {
 
 @media (min-width: 769px) {
     .header-social {
-        display: none;
+        display: flex;
+        gap: 15px;
+        margin-left: 20px;
     }
 
     .submit-btn {
