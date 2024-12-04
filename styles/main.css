@@ -619,6 +619,32 @@ header {
     color: #bbb;
 }
 
+/* Кнопка скролла к началу страницы*/
+.scroll-to-top {
+    position: fixed; /* Плавающее положение */
+    bottom: 20px;    /* Отступ снизу */
+    right: 20px;     /* Отступ справа */
+    width: 50px;     /* Ширина кнопки */
+    height: 50px;    /* Высота кнопки */
+    background: var(--primary); /* Основной цвет */
+    color: white;    /* Цвет текста */
+    border: none;    /* Убираем границы */
+    border-radius: 50%; /* Кнопка круглой формы */
+    box-shadow: var(--shadow-md); /* Тень */
+    cursor: pointer; /* Указатель мыши при наведении */
+    font-size: 24px; /* Размер текста */
+    display: none;   /* Изначально скрыта */
+    justify-content: center; /* Центровка текста */
+    align-items: center; /* Центровка текста */
+    z-index: 1000;   /* Поверх других элементов */
+    transition: all 0.3s ease-in-out; /* Плавный переход */
+}
+
+.scroll-to-top:hover {
+    background: var(--accent); /* Цвет при наведении */
+    transform: translateY(-5px); /* Поднятие кнопки */
+}
+
 /* Анимации */
 @keyframes slideIn {
     to {
