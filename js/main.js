@@ -117,7 +117,42 @@ class ScrollToTop {
 class ContactForm {
     constructor() {
         this.form = document.getElementById('contactForm');
+        this.botToken = '8157141771:AAHxRzh3_kCS1amiPTaXw3FTYnN-GrBdt-g';
+        this.chatId = '338930874';
         this.init();
+    }
+
+    async sendToTelegram(data) {
+        const message = `
+🆕 Новая заявка с сайта!
+
+👤 Имя: ${data.name}
+📱 Телефон: ${data.phone}
+💬 Сообщение: ${data.message || 'Не указано'}
+
+⏰ Время: ${new Date().toLocaleString('ru-RU')}
+        `.trim();
+
+        const url = `https://api.telegram.org/bot${this.botToken}/sendMessage`;
+        
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                chat_id: this.chatId,
+                text: message,
+                parse_mode: 'HTML'
+            })
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(`Telegram API error: ${errorData.description || 'Unknown error'}`);
+        }
+
+        return response.json();
     }
 
     async handleSubmit(e) {
@@ -134,23 +169,13 @@ class ContactForm {
             submitButton.disabled = true;
             submitButton.textContent = 'Отправка...';
 
-            const response = await fetch('https://telegram-form.creatmanick-850.workers.dev', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            });
-
-            if (!response.ok) {
-                throw new Error('Ошибка отправки формы');
-            }
+            await this.sendToTelegram(data);
 
             alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
             e.target.reset();
         } catch (error) {
             console.error('Ошибка:', error);
-            alert('Произошла ошибка при отправке формы. Пожалуйста, попробуйте позже.');
+            alert('Произошла ошибка при отправке формы. Пожалуйста, попробуйте позже или свяжитесь с нами напрямую.');
         } finally {
             submitButton.disabled = false;
             submitButton.textContent = 'Получить консультацию';
