@@ -83,34 +83,6 @@ class SmoothScroll {
     }
 }
 
-// Кнопка "Наверх"
-class ScrollToTop {
-    constructor() {
-        this.scrollBtn = document.getElementById('scrollToTopBtn');
-        this.init();
-    }
-
-    showButton() {
-        if (window.scrollY > 200) {
-            this.scrollBtn.style.display = 'flex';
-        } else {
-            this.scrollBtn.style.display = 'none';
-        }
-    }
-
-    scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-
-    init() {
-        window.addEventListener('scroll', () => this.showButton());
-        this.scrollBtn.addEventListener('click', () => this.scrollToTop());
-    }
-}
-
 // Промо-баннер
 class PromoBanner {
     constructor() {
@@ -322,7 +294,6 @@ class Modal {
 document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = new MobileMenu();
     const smoothScroll = new SmoothScroll();
-    const scrollToTop = new ScrollToTop();
     const contactForm = new ContactForm();
     const modal = new Modal();
     const promoBanner = new PromoBanner();
