@@ -1,3 +1,18 @@
 User-agent: *
 Allow: /
-Sitemap: https://itpovar.ru/sitemap.xml
+
+# Sitemap
+Sitemap: https://creatmanceo.github.io/sitemap.xml
+
+# Запрещаем индексацию служебных файлов
+Disallow: /js/
+Disallow: /styles/
+
+# Разрешаем CSS и JS для рендеринга
+User-agent: Googlebot
+Allow: /js/
+Allow: /styles/
+
+User-agent: Yandex
+Allow: /js/
+Allow: /styles/
