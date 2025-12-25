@@ -143,6 +143,7 @@ class PromoPopup {
         this.popup = document.getElementById('promoPopup');
         this.closeBtn = document.querySelector('.popup-close');
         this.overlay = document.querySelector('.popup-overlay');
+        this.ctaButton = document.querySelector('.popup-cta');
         this.init();
     }
 
@@ -166,6 +167,9 @@ class PromoPopup {
 
         this.closeBtn.addEventListener('click', () => this.close());
         this.overlay.addEventListener('click', () => this.close());
+        
+        // Закрываем попап при клике на CTA
+        this.ctaButton.addEventListener('click', () => this.close());
         
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.popup.style.display === 'block') {
