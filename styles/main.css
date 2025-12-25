@@ -106,11 +106,26 @@ header {
     width: 100%;
 }
 
+/* Телефон в шапке */
+.header-phone {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.header-phone:hover {
+    color: var(--secondary);
+}
+
 /* Социальные иконки */
 .header-social {
     display: flex;
     gap: 1rem;
-    margin-right: 4rem;
+    margin-right: 1rem;
 }
 
 .social-link {
@@ -664,28 +679,49 @@ header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0.75rem 20px;
-        gap: 15px;
+        padding: 0.75rem 15px;
+        gap: 10px;
     }
 
     .logo {
-        font-size: 18px;
+        font-size: 16px;
         margin: 0;
+        white-space: nowrap;
+        flex-shrink: 0;
     }
 
     .nav-links {
         display: none;
     }
 
+    /* Скрываем телефон в шапке на мобильных */
+    .header-phone {
+        display: none;
+    }
+
     .header-social {
         display: flex;
-        gap: 10px;
+        gap: 8px;
         margin-right: 0;
         margin-left: auto;
+        flex-shrink: 0;
+    }
+
+    .social-link {
+        font-size: 28px;
+        padding: 3px;
     }
 
     .burger-button {
         display: block;
+        flex-shrink: 0;
+        margin-left: 8px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .burger-button span {
+        width: 20px;
     }
 
     .mobile-menu {
@@ -724,7 +760,6 @@ header {
     .prices-grid {
         grid-template-columns: 1fr;
     }
-}	
 
     .submit-btn {
         width: 100%;
@@ -737,6 +772,11 @@ header {
         display: flex;
         gap: 15px;
         margin-left: auto;
+        margin-right: 2rem;
+    }
+
+    .header-phone {
+        display: flex;
     }
 
     .submit-btn {
@@ -751,6 +791,19 @@ header {
 }
 
 @media (max-width: 480px) {
+    .logo {
+        font-size: 14px;
+    }
+
+    .social-link {
+        font-size: 24px;
+    }
+
+    .burger-button {
+        width: 32px;
+        height: 32px;
+    }
+
     .hero h1 {
         font-size: 28px;
     }
