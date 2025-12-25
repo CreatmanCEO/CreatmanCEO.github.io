@@ -1,0 +1,97 @@
+/**
+ * Новогодние стили
+ * Для отключения: закомментируйте строку подключения в index.html
+ */
+
+/* Дополнительные новогодние украшения */
+
+/* Гирлянда в шапке (опционально) */
+.header-lights {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        #ff0000 0%,
+        #00ff00 25%,
+        #0000ff 50%,
+        #ffff00 75%,
+        #ff0000 100%
+    );
+    background-size: 200% 100%;
+    animation: lightsMove 3s linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes lightsMove {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 200% 0%;
+    }
+}
+
+/* Новогодние акценты */
+.new-year-badge {
+    background: linear-gradient(135deg, #ff0000 0%, #00ff00 100%);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+    margin-left: 10px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Снежный эффект на кнопках */
+.submit-btn:hover {
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3),
+                0 0 30px rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Морозный эффект для карточек */
+.service-category,
+.price-card,
+.advantages-block {
+    transition: all 0.3s ease;
+}
+
+.service-category:hover,
+.price-card:hover,
+.advantages-block:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(230, 240, 255, 0.95) 100%
+    ) !important;
+}
+
+/* Новогодний курсор (снежинка) - опционально */
+body.christmas-cursor {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><text y="15" font-size="16">❄️</text></svg>'), auto;
+}
+
+/* Анимация для промо-баннера */
+#promoBanner {
+    background: linear-gradient(
+        135deg,
+        #1e3a8a 0%,
+        #1d4ed8 50%,
+        #dc2626 100%
+    ) !important;
+    background-size: 200% 100% !important;
+    animation: christmasGradient 5s ease infinite !important;
+}
+
+@keyframes christmasGradient {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
