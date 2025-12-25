@@ -37,14 +37,12 @@ class MobileMenu {
             link.addEventListener('click', () => this.close());
         });
 
-        // Закрытие при клике вне меню
         document.addEventListener('click', (e) => {
             if (this.isOpen && !this.mobileMenu.contains(e.target) && !this.burgerButton.contains(e.target)) {
                 this.close();
             }
         });
 
-        // Предотвращение закрытия при клике внутри меню
         this.mobileMenu.addEventListener('click', (e) => {
             e.stopPropagation();
         });
@@ -110,6 +108,70 @@ class ScrollToTop {
     init() {
         window.addEventListener('scroll', () => this.showButton());
         this.scrollBtn.addEventListener('click', () => this.scrollToTop());
+    }
+}
+
+// Промо-баннер
+class PromoBanner {
+    constructor() {
+        this.banner = document.getElementById('promoBanner');
+        this.closeBtn = document.querySelector('.promo-close');
+        this.init();
+    }
+
+    close() {
+        this.banner.style.display = 'none';
+        localStorage.setItem('promoBannerClosed', 'true');
+        document.body.style.paddingTop = '0';
+    }
+
+    init() {
+        const isClosed = localStorage.getItem('promoBannerClosed');
+        
+        if (!isClosed) {
+            this.banner.style.display = 'block';
+            document.body.style.paddingTop = this.banner.offsetHeight + 'px';
+        }
+
+        this.closeBtn.addEventListener('click', () => this.close());
+    }
+}
+
+// Промо Pop-up
+class PromoPopup {
+    constructor() {
+        this.popup = document.getElementById('promoPopup');
+        this.closeBtn = document.querySelector('.popup-close');
+        this.overlay = document.querySelector('.popup-overlay');
+        this.init();
+    }
+
+    show() {
+        this.popup.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+
+    close() {
+        this.popup.style.display = 'none';
+        document.body.style.overflow = '';
+        localStorage.setItem('promoPopupShown', 'true');
+    }
+
+    init() {
+        const wasShown = localStorage.getItem('promoPopupShown');
+        
+        if (!wasShown) {
+            setTimeout(() => this.show(), 3000);
+        }
+
+        this.closeBtn.addEventListener('click', () => this.close());
+        this.overlay.addEventListener('click', () => this.close());
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.popup.style.display === 'block') {
+                this.close();
+            }
+        });
     }
 }
 
@@ -185,7 +247,6 @@ class ContactForm {
     init() {
         this.form.addEventListener('submit', (e) => this.handleSubmit(e));
 
-        // Маска для телефона
         const phoneInput = this.form.querySelector('input[name="phone"]');
         if (phoneInput) {
             phoneInput.addEventListener('input', (e) => {
@@ -260,4 +321,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollToTop = new ScrollToTop();
     const contactForm = new ContactForm();
     const modal = new Modal();
+    const promoBanner = new PromoBanner();
+    const promoPopup = new PromoPopup();
 });
