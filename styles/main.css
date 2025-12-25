@@ -676,30 +676,54 @@ header {
     color: #bbb;
 }
 
-/* Кнопка скролла к началу страницы*/
-.scroll-to-top {
+/* Плавающая кнопка звонка */
+.call-button {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 50px;
-    height: 50px;
-    background: var(--primary);
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-primary);
     color: white;
     border: none;
     border-radius: 50%;
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 12px rgba(29, 78, 216, 0.4);
     cursor: pointer;
-    font-size: 24px;
+    font-size: 26px;
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 1000;
     transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    animation: pulse-ring 2s infinite;
 }
 
-.scroll-to-top:hover {
-    background: var(--accent);
-    transform: translateY(-5px);
+.call-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(29, 78, 216, 0.5);
+}
+
+.call-button i {
+    animation: shake 0.5s infinite;
+}
+
+@keyframes pulse-ring {
+    0% {
+        box-shadow: 0 0 0 0 rgba(29, 78, 216, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(29, 78, 216, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(29, 78, 216, 0);
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: rotate(0deg); }
+    10%, 30%, 50%, 70%, 90% { transform: rotate(-10deg); }
+    20%, 40%, 60%, 80% { transform: rotate(10deg); }
 }
 
 /* Анимации */
@@ -734,25 +758,8 @@ header {
         display: none;
     }
 
-    /* На мобильных показываем только иконку телефона */
+    /* Прячем телефон в шапке на мобильных */
     .header-phone {
-        padding: 8px;
-        border-radius: 8px;
-        background: var(--gradient-primary);
-        color: white !important;
-    }
-
-    .header-phone:hover {
-        transform: scale(1.05);
-        box-shadow: 0 2px 8px rgba(29, 78, 216, 0.3);
-    }
-
-    .header-phone i {
-        font-size: 20px;
-    }
-
-    /* Скрываем текст номера на мобильных */
-    .header-phone .phone-number {
         display: none;
     }
 
@@ -781,6 +788,11 @@ header {
 
     .mobile-menu {
         display: block;
+    }
+
+    /* Показываем кнопку звонка на мобильных */
+    .call-button {
+        display: flex;
     }
 
     .hero {
@@ -823,6 +835,10 @@ header {
 }
 
 @media (min-width: 769px) {
+    .header-phone {
+        display: flex;
+    }
+
     .header-phone .phone-number {
         display: inline;
     }
