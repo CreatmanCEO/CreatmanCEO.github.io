@@ -59,6 +59,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
+    gap: 2rem;
 }
 
 .logo {
@@ -71,11 +72,13 @@ header {
     background-clip: text;
     color: transparent;
     transition: opacity 0.3s ease;
+    flex-shrink: 0;
 }
 
 .nav-links {
     display: flex;
     gap: 2rem;
+    margin-right: auto;
 }
 
 .nav-links a {
@@ -85,6 +88,7 @@ header {
     transition: color 0.3s;
     position: relative;
     padding: 0.5rem 0;
+    white-space: nowrap;
 }
 
 .nav-links a::after {
@@ -115,6 +119,8 @@ header {
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 .header-phone:hover {
@@ -122,22 +128,25 @@ header {
 }
 
 .header-phone i {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 /* Социальные иконки */
 .header-social {
     display: flex;
-    gap: 1rem;
-    margin-right: 1rem;
+    gap: 0.8rem;
+    flex-shrink: 0;
 }
 
 .social-link {
     color: var(--primary);
-    font-size: 40px;
-    padding: 5px;
+    font-size: 32px;
+    padding: 3px;
     text-decoration: none;
     transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .social-link:hover {
@@ -719,7 +728,6 @@ header {
         font-size: 16px;
         margin: 0;
         white-space: nowrap;
-        flex-shrink: 0;
     }
 
     .nav-links {
@@ -728,12 +736,10 @@ header {
 
     /* На мобильных показываем только иконку телефона */
     .header-phone {
-        display: flex;
         padding: 8px;
         border-radius: 8px;
         background: var(--gradient-primary);
         color: white !important;
-        transition: all 0.3s ease;
     }
 
     .header-phone:hover {
@@ -753,9 +759,7 @@ header {
     .header-social {
         display: flex;
         gap: 8px;
-        margin-right: 0;
         margin-left: auto;
-        flex-shrink: 0;
     }
 
     .social-link {
@@ -819,17 +823,6 @@ header {
 }
 
 @media (min-width: 769px) {
-    .header-social {
-        display: flex;
-        gap: 15px;
-        margin-left: auto;
-        margin-right: 2rem;
-    }
-
-    .header-phone {
-        display: flex;
-    }
-
     .header-phone .phone-number {
         display: inline;
     }
