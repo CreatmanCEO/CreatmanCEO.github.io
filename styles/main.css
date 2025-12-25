@@ -121,6 +121,10 @@ header {
     color: var(--secondary);
 }
 
+.header-phone i {
+    font-size: 20px;
+}
+
 /* Социальные иконки */
 .header-social {
     display: flex;
@@ -189,7 +193,7 @@ header {
     background: var(--bg-light);
     z-index: 1001;
     transition: right 0.3s ease;
-    overflow-y: auto; /* добавляем скролл если контент не помещается */	
+    overflow-y: auto;
 }
 
 .mobile-menu.active {
@@ -235,6 +239,33 @@ header {
     gap: 0.8rem;
 }
 
+/* Телефон в мобильном меню */
+.menu-phone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    background: var(--gradient-primary);
+    padding: 1.2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    text-decoration: none;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.menu-phone:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(29, 78, 216, 0.4);
+}
+
+.menu-phone i {
+    font-size: 24px;
+}
+
 .menu-link {
     font-size: 18px;
     color: var(--text-primary);
@@ -245,6 +276,7 @@ header {
     margin-bottom: 5px;
     position: relative;
     border: 1px solid rgba(0, 0, 0, 0.05);
+    text-decoration: none;
 }
 
 .menu-link:not(:last-child)::after {
@@ -264,7 +296,7 @@ header {
     gap: 2rem;
     margin-top: auto;
     padding: 2rem;
-	margin-bottom: 100px; /* Добавляем отступ снизу */
+    margin-bottom: 100px;
 }
 
 .mobile-social .social-link {
@@ -285,8 +317,8 @@ header {
 /* Главный баннер */
 .hero {
     position: relative;
-    margin-top: 60px;  /* Отступ для фиксированной шапки */	
-    padding-top: 80px; /* Увеличиваем отступ сверху */
+    margin-top: 60px;
+    padding-top: 80px;
     padding: 160px 0 100px;
     background: linear-gradient(135deg, #fff 0%, #f1f5f9 100%);
     overflow: hidden;
@@ -637,28 +669,28 @@ header {
 
 /* Кнопка скролла к началу страницы*/
 .scroll-to-top {
-    position: fixed; /* Плавающее положение */
-    bottom: 20px;    /* Отступ снизу */
-    right: 20px;     /* Отступ справа */
-    width: 50px;     /* Ширина кнопки */
-    height: 50px;    /* Высота кнопки */
-    background: var(--primary); /* Основной цвет */
-    color: white;    /* Цвет текста */
-    border: none;    /* Убираем границы */
-    border-radius: 50%; /* Кнопка круглой формы */
-    box-shadow: var(--shadow-md); /* Тень */
-    cursor: pointer; /* Указатель мыши при наведении */
-    font-size: 24px; /* Размер текста */
-    display: none;   /* Изначально скрыта */
-    justify-content: center; /* Центровка текста */
-    align-items: center; /* Центровка текста */
-    z-index: 1000;   /* Поверх других элементов */
-    transition: all 0.3s ease-in-out; /* Плавный переход */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    font-size: 24px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
 }
 
 .scroll-to-top:hover {
-    background: var(--accent); /* Цвет при наведении */
-    transform: translateY(-5px); /* Поднятие кнопки */
+    background: var(--accent);
+    transform: translateY(-5px);
 }
 
 /* Анимации */
@@ -694,8 +726,27 @@ header {
         display: none;
     }
 
-    /* Скрываем телефон в шапке на мобильных */
+    /* На мобильных показываем только иконку телефона */
     .header-phone {
+        display: flex;
+        padding: 8px;
+        border-radius: 8px;
+        background: var(--gradient-primary);
+        color: white !important;
+        transition: all 0.3s ease;
+    }
+
+    .header-phone:hover {
+        transform: scale(1.05);
+        box-shadow: 0 2px 8px rgba(29, 78, 216, 0.3);
+    }
+
+    .header-phone i {
+        font-size: 20px;
+    }
+
+    /* Скрываем текст номера на мобильных */
+    .header-phone .phone-number {
         display: none;
     }
 
@@ -730,7 +781,7 @@ header {
 
     .hero {
         padding-top: 100px;
-	    margin-top: 60px;  /* Отступ для фиксированной шапки */
+        margin-top: 60px;
     }
 
     .hero h1 {
@@ -777,6 +828,10 @@ header {
 
     .header-phone {
         display: flex;
+    }
+
+    .header-phone .phone-number {
+        display: inline;
     }
 
     .submit-btn {
