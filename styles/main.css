@@ -744,14 +744,18 @@ header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0.75rem 15px;
-        gap: 10px;
+        padding: 1.2rem 15px;
+        gap: 12px;
+        min-height: 80px;
     }
 
     .logo {
-        font-size: 16px;
+        font-size: 15px;
+        line-height: 1.3;
         margin: 0;
-        white-space: nowrap;
+        white-space: normal;
+        max-width: 140px;
+        word-wrap: break-word;
     }
 
     .nav-links {
@@ -765,25 +769,32 @@ header {
 
     .header-social {
         display: flex;
-        gap: 8px;
+        gap: 12px;
         margin-left: auto;
     }
 
     .social-link {
-        font-size: 28px;
-        padding: 3px;
+        font-size: 36px;
+        padding: 8px;
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .burger-button {
         display: block;
         flex-shrink: 0;
-        margin-left: 8px;
-        width: 36px;
-        height: 36px;
+        margin-left: 12px;
+        width: 44px;
+        height: 44px;
+        padding: 10px;
     }
 
     .burger-button span {
-        width: 20px;
+        width: 24px;
+        margin: 4px 0;
     }
 
     .mobile-menu {
@@ -796,8 +807,8 @@ header {
     }
 
     .hero {
-        padding-top: 100px;
-        margin-top: 60px;
+        padding-top: 120px;
+        margin-top: 80px;
     }
 
     .hero h1 {
@@ -856,16 +867,19 @@ header {
 
 @media (max-width: 480px) {
     .logo {
-        font-size: 14px;
+        font-size: 13px;
+        max-width: 120px;
     }
 
     .social-link {
-        font-size: 24px;
+        font-size: 32px;
+        min-width: 40px;
+        min-height: 40px;
     }
 
     .burger-button {
-        width: 32px;
-        height: 32px;
+        width: 40px;
+        height: 40px;
     }
 
     .hero h1 {
