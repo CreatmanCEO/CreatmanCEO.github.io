@@ -68,27 +68,6 @@
             }
         }
 
-        /* Новогодняя иконка в логотипе */
-        .logo::before {
-            content: '🎄 ';
-            font-size: 0.9em;
-        }
-
-        /* Пульсирующий эффект для новогодней иконки */
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-        }
-
-        .logo::before {
-            display: inline-block;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
         /* Новогодний акцент на кнопках */
         .submit-btn {
             position: relative;
